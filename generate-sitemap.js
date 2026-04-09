@@ -54,7 +54,7 @@ ${urls.join('\n')}
   extractUrlsFromSitemap(sitemapXml);
 }
 
-// Function to extract URLs from the sitemap and log them
+// Function to extract URLs from the sitemap and log them in an easy-to-read format
 function extractUrlsFromSitemap(sitemapXml) {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(sitemapXml, 'application/xml');
@@ -69,11 +69,15 @@ function extractUrlsFromSitemap(sitemapXml) {
   }
 
   // Display the URLs for easy access at the bottom of the code
-  console.log('Sitemap generated successfully!');
+  console.log('\nSitemap generated successfully!');
   console.log('URLs in sitemap.xml:\n');
-  urls.forEach(url => {
-    console.log(url);
+
+  // Print each URL on a new line for easy copying
+  urls.forEach((url, index) => {
+    console.log(`${index + 1}. ${url}`);
   });
+
+  console.log('\nYou can copy and paste the URLs from above.');
 }
 
 // Call the function to generate the sitemap
