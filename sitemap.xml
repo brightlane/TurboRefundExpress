@@ -40,3 +40,61 @@
         <priority>0.3</priority>
     </url>
 </urlset>
+<script>
+    // Function to add a new URL to the sitemap.xml file
+    function addUrlToSitemap(newUrl, lastModified, changeFreq, priority) {
+        const sitemapUrl = 'https://brightlane.github.io/TurboRefundExpress/sitemap.xml';
+
+        // Fetch the current sitemap.xml file
+        fetch(sitemapUrl)
+            .then(response => response.text())
+            .then(data => {
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(data, 'application/xml');
+
+                // Create new URL entry
+                const newUrlEntry = xmlDoc.createElement('url');
+                const loc = xmlDoc.createElement('loc');
+                loc.textContent = newUrl;
+                const lastmod = xmlDoc.createElement('lastmod');
+                lastmod.textContent = lastModified;
+                const changefreq = xmlDoc.createElement('changefreq');
+                changefreq.textContent = changeFreq;
+                const priorityElement = xmlDoc.createElement('priority');
+                priorityElement.textContent = priority;
+
+                // Append the new elements to the new URL entry
+                newUrlEntry.appendChild(loc);
+                newUrlEntry.appendChild(lastmod);
+                newUrlEntry.appendChild(changefreq);
+                newUrlEntry.appendChild(priorityElement);
+
+                // Append the new URL entry to the <urlset>
+                xmlDoc.getElementsByTagName('urlset')[0].appendChild(newUrlEntry);
+
+                // Serialize the updated XML document to string
+                const serializer = new XMLSerializer();
+                const updatedXml = serializer.serializeToString(xmlDoc);
+
+                // Send the updated sitemap.xml back to the server (or update your repository)
+                updateSitemap(updatedXml);
+            })
+            .catch(error => console.error('Error fetching the sitemap.xml:', error));
+    }
+
+    // Function to send the updated sitemap.xml back to the repository or server
+    function updateSitemap(updatedXml) {
+        // Here, you would send the updated XML to your server or repository via an API call
+        // For GitHub Pages, you would need to manually update the file through your repo
+        // Example: Use GitHub Actions or a manual update to push this updated XML
+        console.log('Updated sitemap.xml:', updatedXml);
+    }
+
+    // Example of adding a new URL to the sitemap
+    addUrlToSitemap(
+        'https://brightlane.github.io/TurboRefundExpress/newPage.html', // new URL to add
+        '2026-04-09', // last modified date
+        'weekly', // change frequency
+        '0.8' // priority
+    );
+</script>
