@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="File your taxes at TaxTurbo for the fastest refunds. E-file your taxes securely and get your refund in 10-21 days. Don't wait!">
+  <meta name="keywords" content="fast tax filing, quick tax refund, e-file taxes, TurboTax alternative, free federal filing, tax refund 2026, fast IRS refund, e-file 1040">
+  <title>TaxTurbo - Fastest Tax Filing & Refunds</title>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TaxPreparationService",
+    "name": "TaxTurbo",
+    "description": "Fast IRS e-filing partner. 1040/1040-NR forms.",
+    "url": "https://www.taxturbo.com",
+    "serviceType": "Federal/State Tax E-Filing"
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Arial', sans-serif; background-color: #f5f7fa; color: #333; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
+    .logo { max-width: 200px; margin: 20px 0; }
+    h1 { font-size: 2.8em; color: #e53e3e; margin: 20px 0; text-align: center; font-weight: bold; }
+    h2 { font-size: 1.8em; color: #e53e3e; margin: 25px 0 15px; font-weight: bold; }
+    .clock { font-size: 1.5em; color: #c53030; margin: 15px 0; font-weight: bold; }
+    .btn { background: linear-gradient(45deg, #e53e3e, #c53030); color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; display: inline-block; margin: 10px 5px; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(229, 62, 62, 0.6); }
+    .testimonials { background: #fef2f2; border: 2px solid #e53e3e; padding: 25px; border-radius: 15px; margin: 30px 0; text-align: left; }
+    .testimonials p { margin-bottom: 15px; }
+    .sticky-btn { position: fixed; bottom: 20px; right: 20px; background-color: #c53030; color: white; padding: 20px 30px; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); text-transform: uppercase; }
+    .sticky-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(229, 62, 62, 0.6); }
+    .testimonials h2 { margin-bottom: 15px; }
+    /* Mobile Responsive */
+    @media screen and (max-width: 768px) {
+      .btn { padding: 12px 25px; font-size: 14px; }
+      .sticky-btn { padding: 12px 20px; font-size: 14px; bottom: 10px; right: 5%; }
+      .clock { font-size: 1.2em; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Clickable Logo -->
+    <a href="https://www.taxturbo.com">
+      <img src="logo.png" alt="TaxTurbo Logo" class="logo">
+    </a>
+
+    <!-- Headline with Urgency Focus -->
+    <h1>⏰ File at TaxTurbo Now → Get Fastest Refunds!</h1>
+    <p><strong>Don’t wait—file your taxes today and get your refund in as little as 10-21 days. Quick, easy, and secure e-filing.</strong></p>
+
+    <!-- Countdown clock to tax deadline -->
+    <div class="clock" id="tax-clock"></div>
+    
+    <!-- Clear Call to Action -->
+    <h2>✅ Maximize Your Refund. File Now!</h2>
+    <p>We offer IRS-approved e-filing, with FREE federal filing and the fastest tax refunds. File today and avoid last-minute stress!</p>
+    
+    <a href="https://www.taxturbo.com" class="btn">🚀 File Taxes Now & Get Fast Refund</a>
+    
+    <!-- Customer Testimonials (Social Proof) -->
+    <section class="testimonials">
+      <h2>💬 What Our Users Say</h2>
+      <p>"Filed in minutes and got my refund in 12 days! I’m sticking with TaxTurbo!" – John, CA</p>
+      <p>"It was 70% cheaper than other tax services, and my refund came faster than expected!" – Priya, NY</p>
+      <p>"As an expat, I used TaxTurbo for my 1040-NR filing, and it was seamless and quick!" – Luis, UK</p>
+    </section>
+  </div>
+  
+  <!-- Sticky CTA Button (Always visible at the bottom-right) -->
+  <a href="https://www.taxturbo.com" class="sticky-btn">🚀 File Taxes Fast Now!</a>
+
+  <script>
+    // Countdown clock (Urgency element, non-intrusive)
+    function updateClock() {
+      const now = new Date();
+      let taxDay = new Date(now.getFullYear(), 3, 15); // Tax deadline is April 15
+      if (now > taxDay) taxDay = new Date(now.getFullYear(), 9, 15); // If past April, use Oct 15 for extended filing
+      const diff = taxDay - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('tax-clock').innerText =
+        `⏰ Hurry! Time left to file your taxes: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+  <!-- Privacy Policy and Cookie Consent Banner -->
+  <div id="cookie-consent-banner" style="position: fixed; bottom: 0; width: 100%; background: #333; color: white; padding: 10px 0; text-align: center;">
+    We use cookies to enhance your experience. By using our website, you agree to our <a href="/privacy-policy" style="color: #ffcc00;">privacy policy</a> and <a href="/cookie-policy" style="color: #ffcc00;">cookie policy</a>.
+    <button onclick="document.getElementById('cookie-consent-banner').style.display='none'" style="margin-left: 15px; padding: 5px 15px; background-color: #e53e3e; color: white;">Got It</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a>
+    <p><small>TaxTurbo is not affiliated with or endorsed by TurboTax. We are a separate IRS-authorized e-filing partner offering fast and affordable tax filing services.</small></p>
+  </footer>
+</body>
+</html>
