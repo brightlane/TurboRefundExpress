@@ -48,7 +48,7 @@ ${urls.join('\n')}
 
   // Write the generated sitemap to sitemap.xml
   fs.writeFileSync(path.join(rootDir, 'sitemap.xml'), sitemapXml);
-  console.log('Sitemap generated successfully!');
+  console.log('Sitemap generated successfully!\n');
   
   // Now extract and list the URLs from the generated sitemap
   extractUrlsFromSitemap(sitemapXml);
@@ -68,9 +68,12 @@ function extractUrlsFromSitemap(sitemapXml) {
     urls.push(urlElements[i].textContent);
   }
 
-  // Display the URLs for easy access
-  console.log('URLs in sitemap.xml:');
-  urls.forEach(url => console.log(url));
+  // Display the URLs for easy access at the bottom of the code
+  console.log('Sitemap generated successfully!');
+  console.log('URLs in sitemap.xml:\n');
+  urls.forEach(url => {
+    console.log(url);
+  });
 }
 
 // Call the function to generate the sitemap
