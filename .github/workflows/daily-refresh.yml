@@ -1,1 +1,23 @@
+name: Daily SEO Refresh
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
 
+permissions:
+  contents: write
+
+jobs:
+  run-generator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run the script
+        run: node generate.js
+      - name: Save the new pages
+        run: |
+          git config --global user.name "SEO-Bot"
+          git config --global user.email "bot@github.com"
+          git add .
+          git commit -m "Updated 500 pages" || exit 0
+          git push
