@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-// REPAIR 1: Added trailing slash so URLs don't mash together
+// REPAIR: Ensure the base URL is clean and the affiliate link is handled correctly
 const baseUrl = "https://brightlane.github.io/TurboRefundExpress/"; 
 const affiliateUrl = "https://www.linkconnector.com/ta.php?lc=007949061588005142";
 
@@ -13,14 +13,12 @@ function build() {
 
     cities.forEach(city => {
         keywords.forEach(keyword => {
-            // REPAIR 2: Ensure filenames are safe and consistent
             const fileName = `${keyword}-${city.toLowerCase().replace(/ /g, '-')}.html`;
             const atid = `TRB_${keyword.replace(/-/g, '_')}_2026_${city.replace(/ /g, '_')}`;
             const link = `${affiliateUrl}&atid=${atid}`;
             
             let html = template
                 .replace(/index\.html/g, fileName)
-                // This targets your specific affiliate link in the template
                 .replace(/https:\/\/www\.linkconnector\.com\/ta\.php\?lc=007949061588005142&atid=UsaTaxRefunds/g, link)
                 .replace(/<div id="dynamic-content"><\/div>/, `
                     <div style="background:#fff5f5;border:1px solid #feb2b2;padding:15px;border-radius:8px;margin-bottom:20px;">
@@ -29,18 +27,27 @@ function build() {
                     </div>`);
 
             fs.writeFileSync(fileName, html);
+            // Push clean URL to list
             sitemapLinks.push(`${baseUrl}${fileName}`);
         });
     });
 
-    // BUILD SITEMAP
+    // BUILD SITEMAP - Formatted to be 100% XML compliant
     const xmlEntries = sitemapLinks.map(url => {
-        // REPAIR 3: Comprehensive XML escaping
-        const safeUrl = url.replace(/&/g, '&amp;').replace(/ /g, '%20'); 
+        // This is the critical repair: replacing '&' with '&amp;'
+        const safeUrl = url.replace(/&/g, '&amp;').replace(/\s/g, '%20'); 
         return `  <url>\n    <loc>${safeUrl}</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>`;
     }).join('\n');
 
-    const fullXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${baseUrl}</loc><priority>1.0</priority></url>\n${xmlEntries}\n</urlset>`;
+    // Added the root home page to the start of the XML entries
+    const fullXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${baseUrl}</loc>
+    <priority>1.0</priority>
+  </url>
+${xmlEntries}
+</urlset>`;
     
     fs.writeFileSync('sitemap.xml', fullXml);
     console.log(`✅ Success: Generated ${sitemapLinks.length} pages and sitemap.xml`);
