@@ -1,105 +1,88 @@
 const fs = require('fs');
-const template = fs.readFileSync('index.html', 'utf8');
-const today = new Date();
-const dateISO = today.toISOString().split('T')[0];
-const longDate = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+const path = require('path');
 
-// 1. THE REVENUE ENGINE (Keywords & Global Geographies)
-const powerKeywords = [
-    "TurboTax Login 2026", "H&R Block Online Filing", "TaxSlayer Refund Tracker", "FreeTaxUSA E-file",
-    "No Tax on Tips Credit", "Overtime Tax Exemption", "Seniors 6k Standard Credit", "Auto Loan Interest Deduction",
-    "Form 1040-NR Non-Resident Alien", "Form 8843 International Student", "W-2 Form Recovery", "1099-K Venmo Reporting",
-    "Crypto Capital Gains Tax", "Airbnb Rental Tax Deductions", "Uber Driver Expense Hack", "IRS Audit Protection",
-    "Back Taxes Settlement", "FBAR Foreign Account Reporting", "FEIE Foreign Earned Income Exclusion",
-    "ITIN Application Guide", "US Tax for Digital Nomads"
+// 1. CRITICAL CONFIG - The "Empire" Settings
+const baseUrl = "https://brightlane.github.io/TurboRefundExpress";
+const affiliateUrl = "https://www.linkconnector.com/ta.php?lc=007949061588005142";
+
+// 2. DATA POOLS
+const keywords = [
+    "1040-nr-e-file", "fastest-tax-refund", "irs-refund-tracker", 
+    "no-tax-on-tips", "overtime-tax-exemption", "seniors-6k-credit",
+    "irs-e-file-partners", "online-tax-filing", "turbotax-alternative", "auto-loan-deduction"
 ];
 
 const cities = [
-    "New York City", "Los Angeles", "Chicago", "Houston", "Miami", "Dallas", "Atlanta", "Philadelphia", "Phoenix", "Boston",
-    "Seattle", "San Diego", "San Francisco", "Austin", "Denver", "Las Vegas", "Nashville", "Orlando", "Charlotte", "Baltimore",
-    "California", "Texas", "Florida", "New York State", "Puerto Rico", "Guam", "US Virgin Islands", "American Samoa",
-    "Pennsylvania", "Illinois", "Ohio", "Georgia", "North Carolina", "Michigan", "New Jersey", "Virginia", "Washington State",
-    "Dubai", "London", "Toronto", "Sydney", "Singapore", "Berlin", "Hong Kong", "Manila", "Mexico City", "Tokyo",
-    "Paris", "Seoul", "Amsterdam", "Madrid", "Rome", "Bangkok", "Abu Dhabi", "Zurich", "Dublin", "Panama City",
-    "San Jose Costa Rica", "Lisbon", "Grand Cayman", "Nassau", "Tel Aviv", "Istanbul", "Riyadh", "Doha"
+    "New York", "London", "Dubai", "Singapore", "Sydney", "Mumbai", 
+    "Manila", "Toronto", "Berlin", "Hong Kong", "Paris", "Tokyo",
+    "Chicago", "Los Angeles", "Houston", "Phoenix", "Philadelphia",
+    "San Antonio", "San Diego", "Dallas", "San Jose", "Austin"
 ];
 
-// 2. SCRIPTS & LEGAL COMPONENTS
-const enhancedScripts = `
-<script>
-// EXIT INTENT COOKIE DROP (The Safety Net)
-let cookieDropped = false;
-document.addEventListener('mouseleave', (e) => {
-    if (e.clientY < 0 && !cookieDropped) {
-        const exitFrame = document.createElement('iframe');
-        exitFrame.src = "https://www.linkconnector.com/ta.php?lc=007949061588005142&atid=EXIT_INTENT_RECOVERY";
-        exitFrame.style.display = "none";
-        document.body.appendChild(exitFrame);
-        cookieDropped = true;
-    }
-});
+// 3. THE GENERATOR ENGINE
+async function generateEmpire() {
+    const template = fs.readFileSync('index.html', 'utf8');
+    let sitemapEntries = [];
 
-// OBBBA 2026 CALCULATOR
-function calculateRefund() {
-    const tips = Math.min(parseInt(document.getElementById('tips')?.value || 0), 25000);
-    const ot = Math.min(parseInt(document.getElementById('overtime')?.value || 0), 12500);
-    const senior = document.getElementById('isSenior')?.checked ? 6000 : 0;
-    const savings = (tips + ot + senior) * 0.15;
-    const res = document.getElementById('calc-result');
-    if(res) {
-        res.innerHTML = "<strong>Estimated OBBBA Savings: $" + savings.toFixed(2) + "</strong><br><small>Verified for ${longDate}. Click 'File Now' to secure this refund.</small>";
-        res.style.display = "block";
-    }
-}
-</script>`;
+    cities.forEach(city => {
+        keywords.forEach(keyword => {
+            const fileName = `${keyword}-${city.toLowerCase().replace(/ /g, '-')}.html`;
+            const atid = `TRB_${keyword.replace(/-/g, '_')}_2026_${city.replace(/ /g, '_')}`;
+            const fullAffiliateLink = `${affiliateUrl}&atid=${atid}`;
+            
+            // Personalize the content for the city
+            let pageContent = template
+                .replace(/index\.html/g, fileName)
+                .replace(/https:\/\/www\.linkconnector\.com\/ta\.php\?lc=007949061588005142&atid=UsaTaxRefunds/g, fullAffiliateLink)
+                .replace(/<div id="dynamic-content"><\/div>/, `
+                    <div style="background:#fff5f5; border:1px solid #feb2b2; padding:15px; border-radius:8px; margin-bottom:20px;">
+                        <h2 style="margin-top:0; color:#c53030; font-size:1.1rem;">Latest Update for ${city} Residents</h2>
+                        <p style="margin:0; font-size:0.9rem;">IRS systems are currently processing high volumes for <strong>${keyword.replace(/-/g, ' ')}</strong>. Local filers in ${city} are encouraged to use e-file for direct deposit to avoid the 8-week paper check delay.</p>
+                    </div>
+                `);
 
-const complianceFooter = `
-<footer style="background:#1a202c; color:#cbd5e0; padding:60px 20px; font-family:sans-serif; font-size:0.85em; text-align:left;">
-    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:40px;">
-        <div>
-            <h4 style="color:#fff;">Legal & Compliance</h4>
-            <p>Authorized e-file partner. <a href="privacy.html" style="color:#fc8181;">Privacy Policy</a> | <a href="https://www.e-file.com/terms.php" target="_blank" style="color:#fc8181;">Terms</a></p>
-            <p>Independent affiliate of e-file.com. All IRS brand names are property of their respective owners.</p>
-        </div>
-        <div>
-            <h4 style="color:#fff;">Contact & Support</h4>
-            <p>For filing status questions, please contact e-file.com support directly. For site inquiries, reach us via our GitHub property: brightlane.</p>
-        </div>
-    </div>
-    <div style="text-align:center; border-top:1px solid #2d3748; margin-top:30px; padding-top:20px; opacity:0.6;">
-        © 2026 brightlane Digital. Supporting OBBBA Reform Awareness.
-    </div>
-</footer>`;
+            // Add the Calculator and Exit-Intent Scripts before </body>
+            const scripts = `
+                <script>
+                function calculateRefund() {
+                    const tips = parseFloat(document.getElementById('tips').value) || 0;
+                    const ot = parseFloat(document.getElementById('overtime').value) || 0;
+                    const senior = document.getElementById('isSenior').checked ? 6000 : 0;
+                    const total = (tips * 0.12) + (ot * 0.15) + senior;
+                    const res = document.getElementById('calc-result');
+                    res.style.display = 'block';
+                    res.innerHTML = 'Estimated 2026 OBBBA Savings: $' + total.toLocaleString() + '<br><small>Click "Start My Return" to finalize this claim.</small>';
+                }
+                
+                // Exit Intent Cookie Drop
+                let exitDropped = false;
+                document.addEventListener('mouseleave', (e) => {
+                    if (e.clientY < 0 && !exitDropped) {
+                        const ifrm = document.createElement('iframe');
+                        ifrm.src = '${fullAffiliateLink}&atid=EXIT_RECOVERY_${city.replace(/ /g, '_')}';
+                        ifrm.style.display = 'none';
+                        document.body.appendChild(ifrm);
+                        exitDropped = true;
+                    }
+                });
+                </script>
+            `;
+            
+            pageContent = pageContent.replace('</body>', scripts + '</body>');
 
-// 3. GENERATION LOOP
-let sitemapLinks = [];
-const baseUrl = "https://brightlane.github.io/SkyScanner"; 
-
-powerKeywords.forEach((kw, kwIdx) => {
-    cities.forEach((city, cityIdx) => {
-        const slug = \`\${kw.toLowerCase().replace(/ /g, '-')}-\${city.toLowerCase().replace(/ /g, '-')}.html\`;
-        const atid = \`TRB_\${kw.replace(/ /g, '_')}_\${city.replace(/ /g, '_')}\`;
-        
-        const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-        const variations = [
-            \`IRS batch processing for \${city} is currently live for 2026 \${kw} filings.\`,
-            \`New OBBBA exemptions apply to \${kw} returns for users in \${city}.\`,
-            \`Expats and residents in \${city} can now access updated \${kw} e-filing for 2026.\`
-        ];
-        const dailyNews = variations[(dayOfYear + kwIdx + cityIdx) % variations.length];
-
-        let content = template
-            .replace(/<\/head>/, \`<link rel="canonical" href="\${baseUrl}/\${slug}" />\\n</head>\`)
-            .replace(/atid=UsaTaxRefunds/g, \`atid=\${atid}\`)
-            .replace(/<title>.*?<\/title>/, \`<title>\${kw} in \${city} | Updated \${longDate}</title>\`)
-            .replace(/id="dynamic-content">.*?<\/div>/, \`<div id="dynamic-content" style="padding:20px; border:2px dashed #e53e3e; background:#fff; margin:20px 0;"><strong>Update for \${longDate}:</strong> \${dailyNews}</div>\`)
-            .replace(/<\/body>/, \`\${enhancedScripts}\${complianceFooter}</body>\`);
-
-        fs.writeFileSync(slug, content);
-        sitemapLinks.push(\`  <url><loc>\${baseUrl}/\${slug}</loc><lastmod>\${dateISO}</lastmod><changefreq>daily</changefreq></url>\`);
+            fs.writeFileSync(fileName, pageContent);
+            sitemapEntries.push(`${baseUrl}/${fileName}`);
+        });
     });
-});
 
-const sitemap = \`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\${sitemapLinks.join('\\n')}</urlset>\`;
-fs.writeFileSync('sitemap.xml', sitemap);
-console.log("Mission Accomplished: 1,500+ High-Performance pages deployed.");
+    // 4. GENERATE SITEMAP
+    const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries.map(url => `  <url><loc>${url}</loc><changefreq>daily</changefreq><priority>0.8</priority></url>`).join('\n')}
+</urlset>`;
+
+    fs.writeFileSync('sitemap.xml', sitemapContent);
+    console.log(`Successfully generated ${sitemapEntries.length} pages and updated sitemap.`);
+}
+
+generateEmpire();
