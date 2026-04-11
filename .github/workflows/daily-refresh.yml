@@ -1,29 +1,23 @@
-name: Daily SEO Refresh
-
+name: 20K Vulture Engine
 on:
-  workflow_dispatch: # Allows manual run
   schedule:
-    - cron: '0 0 * * *' # Runs daily
-
-permissions:
-  contents: write  # THIS IS THE CRITICAL MISSING PIECE
+    - cron: '0 * * * *' # This triggers exactly at the start of every hour
+  workflow_dispatch:      # Keeps the manual "Run" button active
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # Updated to v4 to fix your deprecation warning
-      - uses: actions/setup-node@v4 # Updated to v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Generate Pages and Sitemap
+      - name: Build Engine
         run: node generate.js
-
-      - name: Commit and Push changes
+      - name: Auto-Commit
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "SEO-Master-Bot"
+          git config --global user.email "bot@brightlane.io"
           git add .
-          git commit -m "Automated SEO Refresh" || echo "No changes to commit"
+          git commit -m "Hourly 20k Deep Refresh: $(date)" || echo "No changes"
           git push
