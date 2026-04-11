@@ -1,19 +1,30 @@
 name: 20K Vulture Engine
 on:
   schedule:
-    - cron: '0 * * * *' # This triggers exactly at the start of every hour
-  workflow_dispatch:      # Keeps the manual "Run" button active
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write # THIS FIXES EXIT CODE 128
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # THIS FIXES THE DEPRECATION WARNING
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24' # UPGRADED TO NODE 24
+          
       - name: Build Engine
-        run: node generate.js
+        run: |
+          npm install fs-extra googleapis # Ensures tools are installed
+          node generate.js
+          
       - name: Auto-Commit
         run: |
           git config --global user.name "SEO-Master-Bot"
