@@ -1,90 +1,29 @@
-const fs = require('fs');
-const path = require('path');
+name: Update Sitemap
 
-// Define the directory containing your HTML files
-const rootDir = './'; // Project root directory
-const urlBase = 'https://brightlane.github.io/TurboRefundExpress/'; // Replace with your actual domain
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch:   # Allows you to run it manually
 
-// Function to generate sitemap.xml content
-function generateSitemap() {
-  const files = fs.readdirSync(rootDir);
-  const htmlFiles = files.filter(file => file.endsWith('.html')); // Get all HTML files
-  const images = files.filter(file => file.endsWith('.png')); // Add other image types if needed
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-  // Start building the <urlset> part of the sitemap
-  let urls = htmlFiles.map(file => {
-    const url = urlBase + file;
-    return `
-    <url>
-      <loc>${url}</loc>
-      <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-    `;
-  });
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-  // Add image URLs
-  images.forEach(image => {
-    const url = urlBase + image;
-    urls.push(`
-    <url>
-      <loc>${url}</loc>
-      <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.3</priority>
-    </url>
-    `);
-  });
+      - name: Generate Sitemap
+        run: node generate-sitemap.js # This MUST match your script name
 
-  // Wrap the URLs in the <urlset> tags
-  const sitemapXml = `
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.join('\n')}
-</urlset>
-`;
-
-  // Write the generated sitemap to sitemap.xml
-  fs.writeFileSync(path.join(rootDir, 'sitemap.xml'), sitemapXml);
-  console.log('Sitemap generated successfully!');
-  
-  // Now extract and list the URLs from the generated sitemap
-  extractUrlsFromSitemap(sitemapXml);
-}
-
-// Function to extract URLs from the sitemap and log them
-function extractUrlsFromSitemap(sitemapXml) {
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(sitemapXml, 'application/xml');
-  
-  // Get all the <loc> elements from the <url> tags in the sitemap
-  const urlElements = xmlDoc.getElementsByTagName('loc');
-  const urls = [];
-
-  // Loop through the <loc> elements and extract the URLs
-  for (let i = 0; i < urlElements.length; i++) {
-    urls.push(urlElements[i].textContent);
-  }
-
-  // Display the URLs for easy access
-  console.log('URLs in sitemap.xml:');
-  urls.forEach(url => console.log(url));
-}
-
-// Call the function to generate the sitemap
-generateSitemap();
-<!-- Cross-Linking Section: Related Pages -->
-<section id="cross-linking">
-  <h3>Related Tax Filing Resources:</h3>
-  <ul>
-    <li><a href="TaxTurboXpress.html" title="Tax Turbo Express: Fast Tax Filing">Tax Turbo Express</a></li>
-    <li><a href="TaxFileXpress.html" title="File Your Taxes Quickly with TaxFile Xpress">File Your Taxes Quickly</a></li>
-    <li><a href="TurboTax.html" title="TurboTax Alternative for Easy Tax Filing">TurboTax Alternative</a></li>
-    <li><a href="UsaTaxReturn.html" title="Complete Your USA Tax Return with Ease">USA Tax Return</a></li>
-    <li><a href="taxturboOnline.html" title="TaxTurbo Online: File Taxes Now">TaxTurbo Online</a></li>
-    <li><a href="TaxTurbo.html" title="Tax Turbo: Fast and Reliable Tax Filing">Tax Turbo</a></li>
-    <li><a href="TaxTurbo-Online.html" title="Online Tax Filing Made Easy with TaxTurbo">Online Tax Filing</a></li>
-    <li><a href="TaxTurboXpress.html" title="Fast Filing for Tax Returns with Turbo Express">Tax Turbo Express</a></li>
-  </ul>
-</section>
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Automated sitemap update" || echo "No changes to commit"
+          git push
