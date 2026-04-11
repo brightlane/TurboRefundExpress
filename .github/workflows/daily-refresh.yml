@@ -1,23 +1,29 @@
 name: Daily SEO Refresh
+
 on:
-  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
-
-permissions:
-  contents: write
+  workflow_dispatch:
 
 jobs:
-  run-generator:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Run the script
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Run Empire Generator
         run: node generate.js
-      - name: Save the new pages
+
+      - name: Push Updates
         run: |
-          git config --global user.name "SEO-Bot"
-          git config --global user.email "bot@github.com"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Updated 500 pages" || exit 0
+          git commit -m "2026 Deadline Refresh [Skip CI]" || exit 0
           git push
