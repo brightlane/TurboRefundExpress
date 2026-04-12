@@ -4,11 +4,11 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 * * * *' # Runs every hour to match your "Hourly Refresh" strategy
+    - cron: '0 * * * *' # Matches your Hourly Deep Refresh strategy
   workflow_dispatch:
 
+# FIX: This environment variable silences the Node 20 deprecation warning
 env:
-  # Opt-in to Node 24 for the runner environment
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
@@ -17,19 +17,21 @@ jobs:
     permissions:
       contents: write
     steps:
+      # FIX: Updated to v4.2.2 which supports the Node 24 runner
       - name: Checkout Repository
         uses: actions/checkout@v4.2.2
         with:
-          fetch-depth: 1 # Faster checkout for large repos
+          fetch-depth: 1 
 
+      # FIX: Updated to v4.1.0 which supports the Node 24 runner
       - name: Setup Node.js
         uses: actions/setup-node@v4.1.0
         with:
-          node-version: '20' # Keeping your app execution on Node 20
+          node-version: '20' # Your code still runs on 20 to avoid breaking scripts
           cache: 'npm'
 
       - name: Ensure Folders Exist
-        run: mkdir -p p # Based on your repo structure
+        run: mkdir -p p
 
       - name: Install Dependencies
         run: npm install --prefer-offline --no-audit
@@ -44,7 +46,6 @@ jobs:
           git config --global user.name "SEO-Master-Bot"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          # Using a dynamic timestamp for your deep refresh logs
           TIMESTAMP=$(date -u)
           git commit -m "Hourly 20k Deep Refresh: $TIMESTAMP [Skip CI]" || exit 0
           git push
