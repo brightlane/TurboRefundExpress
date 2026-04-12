@@ -1,34 +1,50 @@
-name: 20K Vulture Engine
+name: TurboRefund SEO Auto-Refresh
 on:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 * * * *' # Runs every hour to match your "Hourly Refresh" strategy
   workflow_dispatch:
 
-permissions:
-  contents: write # THIS FIXES EXIT CODE 128
-
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # THIS FIXES THE DEPRECATION WARNING
+  # Opt-in to Node 24 for the runner environment
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  build:
+  seo-refresh:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-node@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4.2.2
         with:
-          node-version: '24' # UPGRADED TO NODE 24
-          
-      - name: Build Engine
+          fetch-depth: 1 # Faster checkout for large repos
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+        with:
+          node-version: '20' # Keeping your app execution on Node 20
+          cache: 'npm'
+
+      - name: Ensure Folders Exist
+        run: mkdir -p p # Based on your repo structure
+
+      - name: Install Dependencies
+        run: npm install --prefer-offline --no-audit
+
+      - name: Run Turbo Engine
         run: |
-          npm install fs-extra googleapis # Ensures tools are installed
           node generate.js
-          
-      - name: Auto-Commit
+          node generate-sitemap.js
+
+      - name: Commit and Push Large Update
         run: |
           git config --global user.name "SEO-Master-Bot"
-          git config --global user.email "bot@brightlane.io"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Hourly 20k Deep Refresh: $(date)" || echo "No changes"
+          # Using a dynamic timestamp for your deep refresh logs
+          TIMESTAMP=$(date -u)
+          git commit -m "Hourly 20k Deep Refresh: $TIMESTAMP [Skip CI]" || exit 0
           git push
