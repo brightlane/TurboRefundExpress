@@ -1,4 +1,4 @@
-name: DYNAMIC REFRESH SEO ENGINE (FIXED)
+name: SINGLE TEMPLATE LOCKED SEO ENGINE
 
 on:
   schedule:
@@ -16,7 +16,7 @@ jobs:
       with:
         python-version: '3.12'
 
-    - name: Build Dynamic SEO Engine
+    - name: Locked Build System
       run: |
         pip install jinja2
 
@@ -25,100 +25,59 @@ import datetime
 from jinja2 import Template
 
 DATE = datetime.date.today().strftime("%Y-%m-%d")
-BUILD_ID = datetime.datetime.utcnow().strftime("%H%M%S")
-
 BASE = "https://brightlane.github.io/TurboRefundExpress"
 
 AFFILIATE = "https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpress"
 
 # =========================
-# SINGLE SOURCE OF TRUTH CONTENT MAP
-# (stable URLs = SEO safe)
-# =========================
-PAGES = {
-    "w2-guide": {
-        "title": "W-2 Tax Filing Guide 2026",
-        "content": [
-            "W-2 forms summarize your yearly income and tax withholding from employers.",
-            "Accurate entry of W-2 data prevents IRS processing delays.",
-            "E-filing is faster and reduces common filing mistakes.",
-            "Always verify employer and SSN details before submission."
-        ],
-        "links": ["refund-status", "efile-1040"]
-    },
-
-    "refund-status": {
-        "title": "IRS Refund Status Guide 2026",
-        "content": [
-            "IRS refund tracking allows taxpayers to monitor return progress.",
-            "Most refunds are issued within 21 days for error-free returns.",
-            "Banking errors or identity checks may delay processing.",
-            "Electronic filing speeds up refund approval significantly."
-        ],
-        "links": ["w2-guide", "efile-1040"]
-    },
-
-    "efile-1040": {
-        "title": "How to E-File Form 1040 in 2026",
-        "content": [
-            "Form 1040 is the standard federal income tax return form.",
-            "E-filing reduces manual errors and speeds up IRS review.",
-            "Gather all income and deduction documents before filing.",
-            "Confirmation is required to ensure successful submission."
-        ],
-        "links": ["w2-guide", "refund-status"]
-    }
-}
-
-# =========================
-# STICKY SEO HEADER (LOCKED)
+# SINGLE HEADER (LOCKED)
 # =========================
 HEADER = """
 <header style="
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:10px 16px;
+  background:#0a1224;
+  border-bottom:1px solid rgba(255,255,255,0.08);
   position:sticky;
   top:0;
   z-index:9999;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 16px;
-  background:linear-gradient(180deg,#0a1224,#070b16);
-  border-bottom:1px solid rgba(255,255,255,0.08);
 ">
 
-  <div style="width:33%; text-align:left;">
-    <a href="{affiliate}">
+  <div style="text-align:left;">
+    <a href="{a}">
       <img src="https://7667.imgix.net/banners/54186.png" style="max-height:55px;">
     </a>
   </div>
 
-  <div style="width:33%; text-align:center;">
-    <a href="{affiliate}" style="text-decoration:none;">
-      <img src="turbo.jpg" style="height:80px; display:block; margin:0 auto;">
+  <div style="text-align:center;">
+    <a href="{a}">
+      <img src="turbo.jpg" style="height:85px; display:block; margin:0 auto;">
       <div style="color:#38bdf8;font-weight:900;font-size:12px;">
         TURBO REFUND EXPRESS
       </div>
     </a>
   </div>
 
-  <div style="width:33%; text-align:right;">
-    <a href="{affiliate}">
+  <div style="text-align:right;">
+    <a href="{a}">
       <img src="https://7667.imgix.net/banners/54186.png" style="max-height:55px;">
     </a>
   </div>
 
 </header>
-""".format(affiliate=AFFILIATE)
+""".format(a=AFFILIATE)
 
 # =========================
-# PAGE TEMPLATE
+# SINGLE TEMPLATE
 # =========================
 TEMPLATE = Template("""
 <!DOCTYPE html>
 <html>
 <head>
 <title>{{title}} | TurboRefund Express</title>
-<meta name="description" content="{{title}} 2026 guide.">
+<meta name="description" content="{{title}} guide 2026.">
 </head>
 
 <body style="margin:0;font-family:Arial;background:#050b1a;color:white;">
@@ -133,10 +92,10 @@ TEMPLATE = Template("""
 <p>{{p}}</p>
 {% endfor %}
 
-<h2>Related Guides</h2>
+<h2>Related Pages</h2>
 <ul>
 {% for l in links %}
-  <li><a href="{{base}}/{{l}}.html" style="color:#38bdf8;">{{l.replace('-', ' ').title()}}</a></li>
+  <li><a href="{{base}}/{{l}}.html" style="color:#38bdf8;">{{l}}</a></li>
 {% endfor %}
 </ul>
 
@@ -148,7 +107,7 @@ TEMPLATE = Template("""
   color:white;
   text-decoration:none;
   border-radius:8px;">
-Start E-Filing Now
+Start E-Filing
 </a>
 
 </main>
@@ -158,13 +117,43 @@ Start E-Filing Now
 """)
 
 # =========================
-# GENERATE (REFRESH SAME URLS)
+# CONTENT MAP (ONLY SOURCE OF TRUTH)
 # =========================
+PAGES = {
+    "w2-guide": {
+        "title": "W-2 Tax Guide 2026",
+        "content": [
+            "W-2 forms summarize your annual income from employment.",
+            "Accurate filing prevents IRS delays.",
+            "E-filing speeds up refund processing."
+        ],
+        "links": ["refund-status", "efile-1040"]
+    },
+    "refund-status": {
+        "title": "IRS Refund Status 2026",
+        "content": [
+            "Refund tracking shows IRS processing progress.",
+            "Most refunds complete within 21 days.",
+            "Errors can delay payment."
+        ],
+        "links": ["w2-guide", "efile-1040"]
+    },
+    "efile-1040": {
+        "title": "How to E-File 1040",
+        "content": [
+            "Form 1040 is the standard US tax return.",
+            "E-filing reduces errors and speeds processing.",
+            "Always verify your submission confirmation."
+        ],
+        "links": ["w2-guide", "refund-status"]
+    }
+}
 
-generated = []
-
+# =========================
+# BUILD ALL PAGES (FORCE REGEN)
+# =========================
 for slug, data in PAGES.items():
-    filename = f"{slug}.html"   # 🔥 SAME FILE = NO SEO LOSS
+    filename = f"{slug}.html"
 
     html = TEMPLATE.render(
         title=data["title"],
@@ -178,26 +167,23 @@ for slug, data in PAGES.items():
     with open(filename, "w", encoding="utf-8") as f:
         f.write(html)
 
-    generated.append(f"{BASE}/{filename}")
-
 # =========================
-# SITEMAP (ALWAYS UPDATED)
+# SITEMAP
 # =========================
-
 with open("sitemap.xml", "w") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
 
-    for url in generated:
-        f.write(f"<url><loc>{url}</loc></url>\n")
+    for slug in PAGES:
+        f.write(f"<url><loc>{BASE}/{slug}.html</loc></url>\n")
 
     f.write("</urlset>")
 EOF
 
-    - name: Commit Dynamic Build
+    - name: Commit Locked System
       run: |
-        git config user.name "SEO ENGINE BOT"
+        git config user.name "LOCKED SEO ENGINE"
         git config user.email "seo@bot.com"
         git add .
-        git commit -m "Dynamic SEO refresh build" || exit 0
+        git commit -m "LOCKED SINGLE TEMPLATE SYSTEM" || exit 0
         git push
