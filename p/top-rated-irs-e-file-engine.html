@@ -1,177 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>TurboRefundExpress | Ditch TurboTax's Freelancer Fees</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .logic-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .logic-card:hover { transform: translateY(-4px); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<title>TurboRefundExpress | File Taxes Free</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+
+.logic-card {
+    transition: all 0.3s ease;
+}
+.logic-card:hover {
+    transform: translateY(-4px);
+}
+
+.turbotax-red {
+    color: #dc2626;
+    text-decoration: line-through;
+    font-weight: 900;
+    position: relative;
+}
+.turbotax-red::after {
+    content: "✕";
+    position: absolute;
+    right: -16px;
+    top: -8px;
+    color: black;
+    font-weight: 900;
+}
+</style>
 </head>
+
 <body class="bg-slate-50 text-slate-900">
 
-    <!-- NAV WITH LOGO -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <img src="turbo.jpg" alt="TurboRefundExpress" class="h-12 w-auto">
-            <button class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-emerald-200">
-                Start Filing $0
-            </button>
-        </div>
-    </nav>
+<!-- NAV -->
+<nav class="sticky top-0 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- HERO -->
-    <section class="max-w-4xl mx-auto px-6 pt-16 pb-12 text-center">
-        <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-bold mb-6 inline-block uppercase tracking-wider">The "Anti-Upsell" Tax Tool</span>
-        <h1 class="text-5xl md:text-6xl font-black mb-6 tracking-tight text-slate-900 leading-[1.1]">
-            TurboTax's <span class="bg-red-200 px-3 py-1 rounded-full text-red-600 font-black text-sm tracking-wider">FREELANCER FEE</span><br>
-            just cost you <span class="text-red-500 line-through decoration-8">$169</span>
-        </h1>
-        <p class="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
-            They charge 1099 filers $60+ just to <em>exist.</em> We charge $0 for federal + state.<br>
-            Compare the hidden fees and switch in 60 seconds.
-        </p>
+        <img src="turbo.jpg" class="h-20 md:h-24">
 
-        <!-- LOGO REINFORCEMENT -->
-        <div class="mb-12">
-            <img src="turbo.jpg" alt="TurboRefundExpress" class="h-20 w-auto mx-auto mb-4">
-            <p class="text-sm text-slate-500">Fast. Trusted. American.</p>
-        </div>
+        <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+           class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full font-bold">
+           Start Filing Free
+        </a>
 
-        <!-- FEE CALCULATOR -->
-        <div class="logic-card bg-white rounded-3xl shadow-2xl border border-slate-200 p-8 text-left max-w-2xl mx-auto">
-            <div class="mb-8">
-                <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Calculate their "Hidden" Fees</h3>
-                <div class="space-y-3">
-                    <label class="flex items-center p-4 bg-slate-50 rounded-xl border border-slate-100 cursor-pointer hover:border-emerald-300 transition-all">
-                        <input type="checkbox" checked disabled class="w-5 h-5 accent-emerald-600">
-                        <span class="ml-4 flex-grow font-semibold">Standard Federal Filing</span>
-                        <span class="text-slate-500">$59</span>
-                    </label>
-                    <label class="flex items-center p-4 bg-white rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-300 transition-all">
-                        <input type="checkbox" id="check-1" class="w-5 h-5 accent-emerald-600 fee-check" data-price="60">
-                        <span class="ml-4 flex-grow font-semibold">I'm a Freelancer / 1099</span>
-                        <span class="text-slate-400">+$60</span>
-                    </label>
-                    <label class="flex items-center p-4 bg-white rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-300 transition-all">
-                        <input type="checkbox" id="check-2" class="w-5 h-5 accent-emerald-600 fee-check" data-price="50">
-                        <span class="ml-4 flex-grow font-semibold">I sold Crypto or Stocks</span>
-                        <span class="text-slate-400">+$50</span>
-                    </label>
-                    <label class="flex items-center p-4 bg-white rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-300 transition-all">
-                        <input type="checkbox" id="check-3" class="w-5 h-5 accent-emerald-600 fee-check" data-price="40">
-                        <span class="ml-4 flex-grow font-semibold">I have Student Loans</span>
-                        <span class="text-slate-400">+$40</span>
-                    </label>
-                </div>
-            </div>
+    </div>
+</nav>
 
-            <div class="grid grid-cols-2 gap-4 border-t pt-8">
-                <div class="text-center border-r">
-                    <p class="text-xs font-bold text-slate-400 uppercase">Their Cost</p>
-                    <p id="competitor-price" class="text-4xl font-extrabold text-red-500 transition-all">$59</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-xs font-bold text-emerald-600 uppercase">Your Cost</p>
-                    <p class="text-4xl font-extrabold text-emerald-600 tracking-tighter">$0</p>
-                </div>
-            </div>
+<!-- HERO -->
+<section class="max-w-4xl mx-auto px-6 pt-8 pb-10 text-center">
 
-            <button class="w-full mt-8 bg-slate-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-emerald-600 transition-all shadow-xl active:scale-95">
-                Import from TurboTax (Free)
-            </button>
-            <p class="text-center text-slate-400 text-xs mt-4">Takes < 1 minute. We never sell your data.</p>
-        </div>
+<span class="bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full text-sm font-bold inline-block mb-4">
+Anti-Upsell Tax Tool
+</span>
 
-        <!-- USER REGRET SOCIAL PROOF -->
-        <div class="mt-20 grid md:grid-cols-3 gap-6 text-center">
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-2xl transition-all">
-                <p class="text-red-500 font-bold text-xl mb-3">"Started free, ended up paying $189 for my 1099s"</p>
-                <p class="text-sm text-slate-500">-Reddit freelancer</p>
-            </div>
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-2xl transition-all">
-                <p class="text-red-500 font-bold text-xl mb-3">"They hid $40 state fees until the FINAL screen"</p>
-                <p class="text-sm text-slate-500">-Trustpilot review</p>
-            </div>
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-2xl transition-all">
-                <p class="text-red-500 font-bold text-xl mb-3">"20yr customer now telling everyone to AVOID"</p>
-                <p class="text-sm text-slate-500">-TurboTax forum</p>
-            </div>
-        </div>
-    </section>
+<h1 class="text-5xl md:text-6xl font-black mb-4 leading-tight">
+<span class="turbotax-red">TurboTax</span> fees hit freelancers hard
+</h1>
 
-    <!-- TURBOTAX TAX SECTION -->
-    <section class="max-w-4xl mx-auto px-6 py-24">
-        <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-3xl p-12 text-center max-w-3xl mx-auto border-4 border-dashed border-red-200">
-            <h2 class="text-4xl font-black text-red-600 mb-6 tracking-tight">The TurboTax "Life Event Tax"</h2>
-            <div class="grid md:grid-cols-2 gap-8 text-left mb-12">
-                <div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-6">They charge you for <span class="text-red-500">existing</span></h3>
-                    <ul class="space-y-4 text-xl">
-                        <li><span class="font-bold text-red-600">1099 Freelancer</span> → +$60</li>
-                        <li><span class="font-bold text-red-600">Crypto/Stocks</span> → +$50</li>
-                        <li><span class="font-bold text-red-600">Student Loans</span> → +$40</li>
-                        <li><span class="font-bold text-red-600">Rental Income</span> → +$70</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold text-emerald-600 mb-6">We charge you for <span class="text-emerald-600">nothing</span></h3>
-                    <ul class="space-y-4 text-xl">
-                        <li><span class="font-black text-emerald-600">1099s</span> → $0</li>
-                        <li><span class="font-black text-emerald-600">Crypto/Stocks</span> → $0</li>
-                        <li><span class="font-black text-emerald-600">Student Loans</span> → $0</li>
-                        <li><span class="font-black text-emerald-600">Rentals</span> → $0</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="text-2xl text-slate-600 mb-12 italic">"TurboTax built their empire charging freelancers for basic Schedule C/D forms."</p>
-            <button class="bg-red-600 hover:bg-red-700 text-white px-10 py-6 rounded-2xl text-2xl font-black shadow-2xl transition-all">Escape the Upsell Trap →</button>
-        </div>
-    </section>
+<p class="text-lg md:text-xl text-slate-700 mb-6 max-w-2xl mx-auto">
+Many filers pay extra for 1099s, crypto, and state returns. File for $0 instead.
+</p>
 
-    <!-- FOOTER MANIFESTO -->
-    <footer class="bg-slate-900 text-white py-20 mt-24">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <img src="turbo.jpg" alt="TurboRefundExpress" class="h-16 w-auto mx-auto mb-8">
-            <h3 class="text-3xl font-black mb-12">Why TurboRefundExpress exists</h3>
-            <div class="grid md:grid-cols-2 gap-12 text-left max-w-2xl mx-auto">
-                <div>
-                    <h4 class="text-2xl font-bold text-emerald-400 mb-6">The TurboTax Problem</h4>
-                    <ul class="space-y-3 text-slate-300 text-lg">
-                        <li>• Dark patterns hide fees until checkout</li>
-                        <li>• $40 "processing" fee if paying from refund</li>
-                        <li>• Upsells every freelancer's Schedule C for $60+</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-2xl font-bold text-emerald-400 mb-6">Our Fix</h4>
-                    <ul class="space-y-3 text-slate-300 text-lg">
-                        <li>• $0 federal + state. No "gotchas."</li>
-                        <li>• No refund processing fees</li>
-                        <li>• Built for 1099s/crypto by freelancers</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="text-center text-slate-400 mt-16 text-sm">© 2026 TurboRefundExpress. Fast. Trusted. American.</p>
-        </div>
-    </footer>
+<img src="turbo.jpg" class="h-20 md:h-24 mx-auto mb-6">
 
-    <script>
-        const checks = document.querySelectorAll('.fee-check');
-        const priceDisplay = document.getElementById('competitor-price');
+<!-- LIVE SAVINGS -->
+<div class="mb-6">
+    <p class="text-sm text-slate-500">Average savings:</p>
+    <p id="savings-counter" class="text-4xl font-extrabold text-emerald-600">$0</p>
+</div>
 
-        checks.forEach(check => {
-            check.addEventListener('change', () => {
-                const bonus = [...checks]
-                    .filter(c => c.checked)
-                    .reduce((sum, c) => sum + Number(c.dataset.price), 0);
-                priceDisplay.textContent = `$${59 + bonus}`;
-            });
+<!-- CALCULATOR -->
+<div class="logic-card bg-white rounded-3xl shadow-xl border p-8 text-left max-w-xl mx-auto">
+
+<h3 class="text-sm font-bold text-slate-400 uppercase mb-6">
+Estimate your cost elsewhere
+</h3>
+
+<div class="space-y-3 mb-6">
+
+<label class="flex items-center p-3 bg-slate-50 rounded-lg">
+<input type="checkbox" checked disabled>
+<span class="ml-3 flex-grow">Basic Filing</span>
+<span>$59</span>
+</label>
+
+<label class="flex items-center p-3 border rounded-lg">
+<input type="checkbox" class="fee-check" data-price="60">
+<span class="ml-3 flex-grow">Freelancer / 1099</span>
+<span>+$60</span>
+</label>
+
+<label class="flex items-center p-3 border rounded-lg">
+<input type="checkbox" class="fee-check" data-price="50">
+<span class="ml-3 flex-grow">Stocks / Crypto</span>
+<span>+$50</span>
+</label>
+
+<label class="flex items-center p-3 border rounded-lg">
+<input type="checkbox" class="fee-check" data-price="40">
+<span class="ml-3 flex-grow">Student Loans</span>
+<span>+$40</span>
+</label>
+
+</div>
+
+<div class="text-center mb-6">
+<p class="text-sm text-slate-500">Estimated cost:</p>
+<p id="price" class="text-4xl font-extrabold text-red-500">$59</p>
+</div>
+
+<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+class="block w-full text-center bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-emerald-600 transition transform hover:scale-105">
+File for $0 →
+</a>
+
+<p class="text-sm text-amber-600 mt-3 text-center font-semibold">
+⚠️ Free filing spots filling today
+</p>
+
+<div class="text-center mt-4 text-sm text-slate-500">
+<p>✔ No credit card required</p>
+<p>✔ Takes under 5 minutes</p>
+<p>✔ Secure filing</p>
+</div>
+
+</div>
+
+<!-- TRUST STRIP -->
+<div class="flex justify-center gap-6 mt-8 text-sm text-slate-500">
+<span>🔒 Secure</span>
+<span>⚡ Fast</span>
+<span>🇺🇸 U.S. Based</span>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="text-center mt-6">
+<p id="activity" class="text-sm text-slate-500">
+Someone just saved $142
+</p>
+</div>
+
+</section>
+
+<!-- FINAL CTA -->
+<section class="text-center py-16">
+<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+class="bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-2xl text-xl font-bold shadow-xl">
+Start Free Filing →
+</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-white py-16 text-center">
+<img src="turbo.jpg" class="h-20 md:h-24 mx-auto mb-4">
+<p class="text-sm text-slate-400">© 2026 TurboRefundExpress</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+// calculator
+const checks = document.querySelectorAll('.fee-check');
+const price = document.getElementById('price');
+
+checks.forEach(c => {
+    c.addEventListener('change', () => {
+        let total = 59;
+        checks.forEach(x => {
+            if (x.checked) total += Number(x.dataset.price);
         });
-    </script>
+        price.textContent = "$" + total;
+    });
+});
+
+// savings counter
+let target = 187;
+let current = 0;
+const counter = document.getElementById('savings-counter');
+
+function animate() {
+    const step = Math.ceil(target / 40);
+    const interval = setInterval(() => {
+        current += step;
+        if (current >= target) {
+            current = target;
+            clearInterval(interval);
+        }
+        counter.textContent = "$" + current;
+    }, 30);
+}
+window.onload = animate;
+
+// social proof ticker
+const messages = [
+"Someone just saved $142",
+"A freelancer avoided $189 in fees",
+"User filed in under 5 minutes",
+"1099 filer switched and paid $0",
+"New user imported instantly"
+];
+
+const activity = document.getElementById("activity");
+
+setInterval(() => {
+    activity.style.opacity = 0;
+    setTimeout(() => {
+        activity.textContent = messages[Math.floor(Math.random() * messages.length)];
+        activity.style.opacity = 1;
+    }, 300);
+}, 4000);
+</script>
+
 </body>
 </html>
