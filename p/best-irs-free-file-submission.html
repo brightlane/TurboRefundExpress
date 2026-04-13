@@ -29,7 +29,6 @@
       max-width: 1600px;
       margin: 0 auto 20px;
       gap: 40px;
-      /* Soft light‑gray / dark‑blue background so E‑file doesn’t vanish */
       background: rgba(20,30,60,0.3);
       padding: 20px 10px;
       border-radius: 15px;
@@ -38,26 +37,52 @@
       border: none;
     }
 
-    /* REDUCED MAIN LOGO: 10% smaller than 480px → 432px */
+    /* CENTER LOGO: 10% wider and 33% shorter */
+    .main-logo {
+      flex: 2;
+      text-align: center;
+      /* Keep it centered and let it grow a bit wider */
+      width: 35%; /* roughly 10% wider space allocation vs before */
+    }
     .main-logo img {
-      max-height: 432px;
+      max-height: 288px;        /* 33% shorter than 432px ≈ 288px */
+      max-width: 528px;         /* 10% wider than ~480px ≈ 528px */
       width: auto;
+      height: auto;
+      object-fit: contain;
     }
 
-    /* E‑file.com logos: VERY LIGHT AND BRIGHT */
+    /* RED X OVER THE TURBOTAX LOGO */
+    .main-logo {
+      position: relative;
+    }
+    .red-x {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 6em;
+      color: #ef4444;
+      z-index: 2;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      pointer-events: none;   /* Don’t block clicks on the logo */
+      /* Optional: slightly bolder X */
+      font-weight: bold;
+    }
+
+    /* E‑file.com logos: VERY LIGHT AND BRIGHT (same as before) */
     .aff-logos img {
       max-height: 160px;
       filter:
-        brightness(220%)     /* WAY brighter than default */
-        saturate(160%)       /* Keeps some color pop */
-        contrast(120%)       /* Sharper */
-        hue-rotate(185deg);  /* Keeps the blue‑white feel */
+        brightness(220%)
+        saturate(160%)
+        contrast(120%)
+        hue-rotate(185deg);
       -webkit-filter:
         brightness(220%)
         saturate(160%)
         contrast(120%)
         hue-rotate(185deg);
-      /* Strong glow so they pop off the dark background */
       box-shadow:
         0 0 16px rgba(59,130,246,0.8),
         0 0 6px white;
@@ -67,6 +92,7 @@
     .main-logo {
       flex: 2;
       text-align: center;
+      position: relative; /* Required for red‑X overlay */
     }
     .aff-logos {
       display: flex;
@@ -158,10 +184,12 @@
         </a>
       </div>
 
-      <!-- CENTER: TurboRefundExpress Logo (10% smaller) -->
+      <!-- CENTER: TurboRefundExpress Logo (wider + shorter, with red X over it) -->
       <div class="main-logo">
         <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-          <img src="https://brightlane.github.io/TurboRefundExpress/turbo.jpg" alt="TurboRefundExpress - Fast Free Taxes (E-file.com)">
+          <img src="https://brightlane.github.io/TurboRefundExpress/turbo.jpg"
+               alt="TurboRefundExpress - Fast Free Taxes (E-file.com)">
+          <span class="red-x">❌</span>
         </a>
       </div>
 
