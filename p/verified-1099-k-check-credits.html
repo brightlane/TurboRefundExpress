@@ -11,6 +11,7 @@
 <style>
 body { font-family: 'Inter', sans-serif; }
 
+/* TURBOTAX STRIKE STYLE */
 .turbotax-red {
     color: #dc2626;
     text-decoration: line-through;
@@ -26,12 +27,13 @@ body { font-family: 'Inter', sans-serif; }
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 34px;
-    color: black;
+    font-size: 40px;
+    color: #000;
     font-weight: 900;
     pointer-events: none;
 }
 
+/* IMAGE SAFETY */
 img {
     max-width: 100%;
     height: auto;
@@ -45,20 +47,20 @@ img {
 <nav class="sticky top-0 bg-white/95 backdrop-blur border-b z-50">
   <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- LOGO FIXED -->
+    <!-- LOGO -->
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
        class="flex items-center">
 
-      <img src="turbo.jpg"
+      <img src="./turbo.jpg"
            alt="TurboRefundExpress Logo"
-           class="h-28 md:h-32 object-contain block">
+           class="h-28 md:h-32 w-auto object-contain drop-shadow-sm">
 
     </a>
 
     <!-- CTA -->
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-       class="bg-emerald-600 text-white px-5 py-2 rounded-full font-bold hover:bg-emerald-700">
-      Start Free Filing
+       class="bg-emerald-600 text-white px-5 py-2 rounded-full font-bold transition transform hover:scale-105 hover:bg-emerald-700">
+       Start Free Filing
     </a>
 
   </div>
@@ -67,27 +69,24 @@ img {
 <!-- HERO -->
 <section class="max-w-4xl mx-auto px-6 pt-10 text-center">
 
-  <!-- BRAND LINE -->
-  <h1 class="text-5xl md:text-6xl font-black mb-3">
-    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress">
-      <span class="turbotax-red">TurboTax</span>
-    </a>
+  <!-- TURBOTAX -->
+  <h1 class="text-5xl md:text-6xl font-black mb-2 leading-tight">
+    <span class="turbotax-red">TurboTax</span>
   </h1>
 
-  <!-- MAIN HEADLINE -->
+  <!-- HEADLINE -->
   <h2 class="text-3xl md:text-4xl font-bold text-black mb-4">
-    fees can vary depending on your tax situation
+    fees vary depending on your tax situation
   </h2>
 
   <!-- SUPPORT TEXT -->
   <p class="text-lg text-slate-700 mb-6 max-w-2xl mx-auto">
-    Many taxpayers find that final filing costs depend on added features such as self-employment income, investments, crypto, or state filings.  
-    Comparing options helps identify more cost-effective filing paths.
+    Many taxpayers find that final filing costs depend on additional forms such as self-employment income, investments, crypto, or state filings. Comparing options helps identify more suitable pricing paths.
   </p>
 
   <!-- CTA -->
   <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-     class="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-600 transition">
+     class="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-bold transition transform hover:scale-105 hover:bg-emerald-600">
      Compare Options →
   </a>
 
@@ -115,7 +114,7 @@ img {
     <p id="quizResult" class="text-center font-bold mt-4"></p>
 
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-       class="block mt-5 bg-emerald-600 text-white text-center py-3 rounded-xl font-bold">
+       class="block mt-5 bg-emerald-600 text-white text-center py-3 rounded-xl font-bold transition transform hover:scale-105 hover:bg-emerald-700">
        See Options →
     </a>
 
@@ -130,7 +129,7 @@ img {
     <h3 class="text-xl font-black mb-2">Compare filing options</h3>
     <p class="text-slate-600 mb-4">Taxpayers can review available options in minutes.</p>
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-       class="block bg-emerald-600 text-white text-center py-3 rounded-xl font-bold">
+       class="block bg-emerald-600 text-white text-center py-3 rounded-xl font-bold transition transform hover:scale-105 hover:bg-emerald-700">
        Check Options →
     </a>
   </div>
@@ -139,7 +138,7 @@ img {
     <h3 class="text-xl font-black mb-2">Filing complexity varies</h3>
     <p class="text-slate-600">Different tax situations may require different forms or features.</p>
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-       class="block mt-4 bg-slate-900 text-white text-center py-3 rounded-xl font-bold">
+       class="block mt-4 bg-slate-900 text-white text-center py-3 rounded-xl font-bold transition transform hover:scale-105 hover:bg-emerald-600">
        Compare →
     </a>
   </div>
@@ -147,7 +146,7 @@ img {
   <div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
     <h3 class="text-xl font-black text-red-700 mb-2">Ready to check your options?</h3>
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-       class="inline-block bg-red-600 text-white px-8 py-3 rounded-xl font-bold">
+       class="inline-block bg-red-600 text-white px-8 py-3 rounded-xl font-bold transition transform hover:scale-105 hover:bg-red-700">
        Start Now →
     </a>
   </div>
