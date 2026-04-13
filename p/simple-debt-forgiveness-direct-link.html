@@ -29,29 +29,39 @@
       max-width: 1600px;
       margin: 0 auto 20px;
       gap: 40px;
+      /* Lift E‑file logos slightly off the dark background */
+      background: rgba(0,0,0,0.2);
+      padding: 20px 10px;
+      border-radius: 15px;
     }
     .logo-container img {
       border: none;
     }
-    /* QUADRUPLE SIZE: Main logo 480px max-height */
+
+    /* REDUCED MAIN LOGO: 10% smaller than 480px → 432px max */
     .main-logo img {
-      max-height: 480px;
+      max-height: 432px; /* -10% from 480px */
       width: auto;
     }
-    /* E-file.com logos: LIGHT BLUE filter */
+
+    /* E‑file.com logos: MORE VISIBLE */
     .aff-logos img {
-      max-height: 120px;
+      max-height: 160px; /* Upsized from 120px */
       filter:
-        hue-rotate(200deg)
-        saturate(150%)
-        brightness(130%)
-        contrast(120%);
+        hue-rotate(180deg)          /* More cyan / blue */
+        saturate(180%)              /* More vivid */
+        brightness(150%)            /* Brighter */
+        contrast(130%);             /* Sharper edges */
       -webkit-filter:
-        hue-rotate(200deg)
-        saturate(150%)
-        brightness(130%)
-        contrast(120%);
+        hue-rotate(180deg)
+        saturate(180%)
+        brightness(150%)
+        contrast(130%);
+      /* Add a subtle glow / border effect */
+      box-shadow: 0 0 12px rgba(59,130,246,0.6);
+      border-radius: 8px;
     }
+
     .main-logo {
       flex: 2;
       text-align: center;
@@ -59,6 +69,8 @@
     .aff-logos {
       display: flex;
       gap: 20px;
+      /* Add padding so logos don’t hug the dark edge */
+      padding: 0 10px;
     }
     .turbo-sucks {
       font-size: 4em;
@@ -145,7 +157,7 @@
         </a>
       </div>
 
-      <!-- CENTER: TurboRefundExpress Logo -->
+      <!-- CENTER: TurboRefundExpress Logo (now 10% smaller) -->
       <div class="main-logo">
         <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
           <img src="https://brightlane.github.io/TurboRefundExpress/turbo.jpg" alt="TurboRefundExpress - Fast Free Taxes (E-file.com)">
@@ -169,7 +181,7 @@
       🚫
     </h1>
 
-    <!-- NEW CTA BLOCK: SAME BUTTONS AS BOTTOM, RIGHT BELOW HEADLINE -->
+    <!-- NEW CTA BLOCK BELOW HEADLINE -->
     <div class="cta" style="margin-top: 30px;">
       <h2>
         ✅ 
@@ -217,78 +229,4 @@
   <!-- WHY TURBOTAX BLASTED DESTROYS YOU -->
   <section style="max-width: 900px; margin: 0 auto;">
     <h2>
-      <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-        Why TurboTax BLASTED destroys you (zooming into the horrors):
-      </a>
-    </h2>
-
-    <ul>
-      <li>
-        📌 
-        <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-          Fake "free" filing bait:
-        </a> 
-        FTC lawsuits prove they trap you in $200+ upgrades mid‑process—pure deception ruled in court battles through 2026.
-      </li>
-      <li>
-        📌 
-        <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-          SSN handover to hackers:
-        </a> 
-        2024 breaches leaked millions via credential stuffing; your identity is dark web bait RIGHT NOW.
-      </li>
-      <li>
-        📌 
-        <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-          Refile loop hell:
-        </a> 
-        Endless glitches waste days, flag audits—2026 Reddit screams confirm the nightmare.
-      </li>
-      <li>
-        📌 
-        <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-          Debt slavery "advances":
-        </a> 
-        35%+ rates turn refunds into nooses for the vulnerable.
-      </li>
-      <li>
-        📌 
-        <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-          1040‑NR apocalypse:
-        </a> 
-        Bugs trigger IRS penalties stacking to thousands, refunds frozen 6+ months.
-      </li>
-    </ul>
-
-    <h3>
-      <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-        Zoom OUT to escape:
-      </a> 
-      Switch to TurboRefundExpress or IRS Direct File—NO traps, TRUE freedom. 
-      Black X it forever. Your wallet demands it.
-    </h3>
-  </section>
-
-  <!-- FINAL CTA: SAME BUTTONS, JUST LOWER ON PAGE -->
-  <div class="cta">
-    <h2>
-      ✅ 
-      <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-        Switch to TurboRefundExpress NOW!
-      </a>
-    </h2>
-    <p>
-      Fast, free, trusted—
-      <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-        E‑file.com powered
-      </a>. No scams.
-    </p>
-    <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-      🚀 FILE NOW - GET YOUR REFUND FASTER!
-    </a>
-    <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-      💰 E‑file.com FREE TAXES
-    </a>
-  </div>
-</body>
-</html>
+      <a 
