@@ -4,97 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TurboRefundExpress</title>
-
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-
-<style>
-body {
-    font-family: 'Inter', sans-serif;
-}
-
-/* GLOBAL TURBOTAX STYLE (REUSABLE ANYWHERE) */
-.turbotax-red {
-    color: #dc2626;
-    font-weight: 900;
-    position: relative;
-    display: inline-block;
-    line-height: 1;
-    text-decoration: line-through;
-}
-
-/* BLACK X OVERLAY */
-.turbotax-red::after {
-    content: "✕";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 44px;
-    color: #000;
-    font-weight: 900;
-    pointer-events: none;
-}
-
-/* IMAGE SAFETY */
-img {
-    max-width: 100%;
-    height: auto;
-}
-</style>
 </head>
 
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-slate-50">
 
-<!-- NAV -->
-<nav class="sticky top-0 bg-white/95 backdrop-blur border-b z-50">
-  <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+<nav class="w-full bg-white border-b">
+  <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
 
-    <!-- LOGO -->
+    <!-- CLICKABLE FULL LOGO -->
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
        class="flex items-center">
 
-      <img src="./turbo.png"
-           alt="Logo"
-           class="h-28 md:h-32 w-auto object-contain">
+      <img src="/turbo.jpg"
+           alt="TurboRefundExpress Logo"
+           class="block w-auto max-h-40 md:max-h-48 object-contain">
 
     </a>
 
-    <!-- CTA -->
+    <!-- CTA BUTTON -->
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-       class="bg-emerald-600 text-white px-5 py-2 rounded-full font-bold hover:bg-emerald-700 transition">
-       Start Free Filing
+       class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2 rounded-full transition">
+      Start Free Filing
     </a>
 
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="max-w-4xl mx-auto px-6 pt-10 text-center">
+<section class="text-center max-w-4xl mx-auto px-6 py-14">
 
-  <!-- CLICKABLE HEADLINE -->
-  <h1 class="text-4xl md:text-5xl font-black leading-tight mb-4">
-
-    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-       class="text-black hover:text-emerald-600 transition">
-
-      What Taxpayers Should Know Before Choosing 
-      <span class="turbotax-red">TurboTax</span>
-
-    </a>
-
+  <h1 class="text-4xl md:text-5xl font-black mb-4">
+    What Taxpayers Should Know Before Choosing Their Filing Platform
   </h1>
 
-  <!-- SUPPORT TEXT -->
-  <p class="text-lg text-slate-700 mb-6 max-w-2xl mx-auto">
-    Filing costs can vary depending on income type, deductions, and additional forms. Comparing options before choosing a platform can help identify better value.
+  <p class="text-lg text-slate-700">
+    Filing costs can vary based on income type, deductions, and additional forms.
+    Comparing options can help identify better value.
   </p>
-
-  <!-- CTA -->
-  <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-     class="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-600 transition">
-     Compare Options →
-  </a>
 
 </section>
 
