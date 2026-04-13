@@ -37,40 +37,49 @@
       border: none;
     }
 
-    /* CENTER LOGO: 10% wider and 33% shorter */
+    /* CENTER LOGO: 25% wider and still short */
     .main-logo {
-      flex: 2;
+      flex: 2.3;           /* 25% wider than original flex space */
       text-align: center;
-      /* Keep it centered and let it grow a bit wider */
-      width: 35%; /* roughly 10% wider space allocation vs before */
     }
     .main-logo img {
-      max-height: 288px;        /* 33% shorter than 432px ≈ 288px */
-      max-width: 528px;         /* 10% wider than ~480px ≈ 528px */
+      max-height: 288px;   /* Keep it short like before */
+      max-width: 600px;    /* roughly 25% wider than ~480px */
       width: auto;
       height: auto;
       object-fit: contain;
     }
 
-    /* RED X OVER THE TURBOTAX LOGO */
-    .main-logo {
+    /* NO RED X OVER CENTER LOGO */
+    /* The ❌ was removed from the .main-logo area */
+
+    /* RED X OVER THE HEADING "TURBOTAX SUCKS" */
+    .turbo-sucks-wrapper {
       position: relative;
+      display: inline-block;
     }
-    .red-x {
+    .turbo-sucks {
+      font-size: 4em;
+      color: #ef4444;
+      font-weight: bold;
+      margin: 25px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      z-index: 1;
+    }
+    .red-x-over-turbo {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 6em;
+      font-size: 7em;
       color: #ef4444;
       z-index: 2;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-      pointer-events: none;   /* Don’t block clicks on the logo */
-      /* Optional: slightly bolder X */
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+      pointer-events: none;
       font-weight: bold;
     }
 
-    /* E‑file.com logos: VERY LIGHT AND BRIGHT (same as before) */
+    /* E‑file.com logos: LIGHT AND BRIGHT */
     .aff-logos img {
       max-height: 160px;
       filter:
@@ -90,21 +99,13 @@
     }
 
     .main-logo {
-      flex: 2;
+      flex: 2.3;
       text-align: center;
-      position: relative; /* Required for red‑X overlay */
     }
     .aff-logos {
       display: flex;
       gap: 20px;
       padding: 0 10px;
-    }
-    .turbo-sucks {
-      font-size: 4em;
-      color: #ef4444;
-      font-weight: bold;
-      margin: 25px 0;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     }
     .visual-section {
       background: rgba(255,255,255,0.1);
@@ -184,12 +185,10 @@
         </a>
       </div>
 
-      <!-- CENTER: TurboRefundExpress Logo (wider + shorter, with red X over it) -->
+      <!-- CENTER: TurboRefundExpress Logo (now 25% wider and shorter, no X) -->
       <div class="main-logo">
         <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-          <img src="https://brightlane.github.io/TurboRefundExpress/turbo.jpg"
-               alt="TurboRefundExpress - Fast Free Taxes (E-file.com)">
-          <span class="red-x">❌</span>
+          <img src="https://brightlane.github.io/TurboRefundExpress/turbo.jpg" alt="TurboRefundExpress - Fast Free Taxes (E-file.com)">
         </a>
       </div>
 
@@ -202,11 +201,15 @@
       </div>
     </div>
 
-    <h1 class="turbo-sucks">
-      🚫 
-      <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree">
-        TURBOTAX SUCKS
-      </a> 
+    <!-- HEADING: TURBOTAX SUCKS WITH RED X OVER IT -->
+    <h1>
+      🚫
+      <span class="turbo-sucks-wrapper">
+        <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpree" class="turbo-sucks">
+          TURBOTAX SUCKS
+        </a>
+        <span class="red-x-over-turbo">❌</span>
+      </span>
       🚫
     </h1>
 
