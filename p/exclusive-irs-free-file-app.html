@@ -1,94 +1,129 @@
+name: TRUE SEO ENGINE - Daily 30 Articles
+
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies & build SEO pages
+      run: |
+        pip install jinja2
+
+        python << 'EOF'
+import os
+import random
 import datetime
 from jinja2 import Template
 
 today = datetime.date.today().strftime('%Y-%m-%d')
 
-affiliate_html = """
+BASE_URL = "https://brightlane.github.io/TurboRefundExpress"
+
+affiliate = """
 <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpress">
-    <img src="https://7667.imgix.net/banners/54186.png" style="max-width:100%; height:auto;">
+<img src="https://7667.imgix.net/banners/54186.png" style="max-width:100%;">
 </a>
 """
 
-pages = {
-  "refund-status": {
-    "title": "IRS Refund Status Guide 2026",
-    "intent": "tracking tax refunds quickly and safely",
-    "steps": [
-      "Check your IRS refund status online using official tools",
-      "Understand common refund delays and processing times",
-      "Verify your tax return details for accuracy",
-      "Avoid errors that slow down refund approval"
-    ]
-  },
-
-  "efile-1040": {
-    "title": "How to E-File Form 1040 in 2026",
-    "intent": "filing federal tax returns electronically",
-    "steps": [
-      "Collect W-2 and income documents",
-      "Choose the correct 1040 filing type",
-      "Submit electronically through IRS-approved systems",
-      "Track confirmation after submission"
-    ]
-  },
-
-  "w2-guide": {
-    "title": "W-2 Tax Filing Explained Simply",
-    "intent": "understanding W-2 forms and filing",
-    "steps": [
-      "Locate employer-issued W-2 forms",
-      "Match income numbers correctly",
-      "Submit accurate tax return data",
-      "Prevent filing delays caused by missing info"
-    ]
-  }
-}
+topics = [
+    {
+        "slug": "w2-guide",
+        "title": "W-2 Tax Filing Guide 2026",
+        "words": [
+            "Understanding your W-2 form is the first step in filing taxes correctly.",
+            "Employers provide W-2s that summarize annual income and taxes withheld.",
+            "Filing early helps prevent IRS processing delays and refund issues.",
+            "Accurate reporting reduces audit risk and improves refund speed."
+        ]
+    },
+    {
+        "slug": "refund-status",
+        "title": "IRS Refund Status Explained 2026",
+        "words": [
+            "IRS refund tracking allows taxpayers to monitor return progress.",
+            "Most refunds are processed within 21 days if no errors exist.",
+            "Delays occur due to incorrect banking or identity verification issues.",
+            "Electronic filing is the fastest method for refund approval."
+        ]
+    },
+    {
+        "slug": "efile-1040",
+        "title": "How to E-File Form 1040 in 2026",
+        "words": [
+            "Form 1040 is the standard federal income tax return document.",
+            "E-filing reduces manual errors and speeds up IRS processing.",
+            "Taxpayers must gather all income and deduction documents first.",
+            "Submission confirmation ensures successful IRS receipt."
+        ]
+    }
+]
 
 template = Template("""
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{data.title}} | TurboRefund Express</title>
+<title>{{t.title}} | TurboRefund Express</title>
+<meta name="description" content="{{t.title}} guide for 2026 tax filing.">
 </head>
 
 <body>
 
-<header>
-  <div style="display:flex;justify-content:space-between;">
-    <div>{{affiliate_html}}</div>
-    <div style="text-align:center;">
+<header style="display:flex;justify-content:space-between;align-items:center;">
+  <div>{{affiliate}}</div>
+
+  <div style="text-align:center;">
+    <a href="{{BASE_URL}}">
       <img src="turbo.jpg" style="height:80px;">
-      <h3>TURBO REFUND EXPRESS</h3>
-    </div>
-    <div>{{affiliate_html}}</div>
+    </a>
+    <h3>TURBO REFUND EXPRESS</h3>
   </div>
+
+  <div>{{affiliate}}</div>
 </header>
 
-<main style="max-width:800px;margin:40px auto;">
+<main style="max-width:850px;margin:40px auto;">
 
-  <h1>{{data.title}}</h1>
+<h1>{{t.title}}</h1>
 
-  <p>
-    This page explains {{data.intent}} in a clear, step-by-step format designed
-    to help users understand the process without confusion.
-  </p>
+<p>
+This article explains {{t.title}} in a clear, structured format designed for easy understanding.
+</p>
 
-  <h2>Step-by-Step Guide</h2>
-  <ol>
-    {% for step in data.steps %}
-      <li>{{step}}</li>
-    {% endfor %}
-  </ol>
+<h2>Complete Guide</h2>
 
-  <h2>Why This Matters</h2>
-  <p>
-    Understanding {{data.intent}} helps reduce errors, improve accuracy,
-    and speed up processing time for tax-related submissions.
-  </p>
+{% for w in t.words %}
+<p>{{w}}</p>
+{% endfor %}
 
-  <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpress">
-    Start E-Filing Now
-  </a>
+<h2>Step-by-Step Process</h2>
+<ol>
+  <li>Gather required documents</li>
+  <li>Verify all income information</li>
+  <li>Submit electronically</li>
+  <li>Track IRS confirmation</li>
+</ol>
+
+<h2>Internal Resources</h2>
+<ul>
+{% for link in links %}
+  <li><a href="{{link.url}}">{{link.title}}</a></li>
+{% endfor %}
+</ul>
+
+<a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpress">
+START E-FILING
+</a>
 
 </main>
 
@@ -96,8 +131,44 @@ template = Template("""
 </html>
 """)
 
-for slug, data in pages.items():
-    filename = f"{slug}-{today}.html"
+# build links for internal linking
+pages = []
+for t in topics:
+    pages.append({
+        "url": f"{BASE_URL}/{t['slug']}-{today}.html",
+        "title": t["title"]
+    })
 
+# generate pages
+for t in topics:
+    links = random.sample(pages, len(pages))
+
+    html = template.render(
+        t=t,
+        affiliate=affiliate,
+        BASE_URL=BASE_URL,
+        links=links
+    )
+
+    filename = f"{t['slug']}-{today}.html"
     with open(filename, "w", encoding="utf-8") as f:
-        f.write(template.render(data=data, affiliate_html=affiliate_html))
+        f.write(html)
+
+# sitemap
+with open("sitemap.xml", "w") as f:
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+    f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+
+    for t in topics:
+        f.write(f"<url><loc>{BASE_URL}/{t['slug']}-{today}.html</loc></url>\n")
+
+    f.write("</urlset>")
+EOF
+
+    - name: Commit & push
+      run: |
+        git config user.name "SEO Engine Bot"
+        git config user.email "bot@github.com"
+        git add .
+        git commit -m "SEO Engine update" || exit 0
+        git push
