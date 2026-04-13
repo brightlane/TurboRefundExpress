@@ -3,72 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdn.tailwindcss.com"></script>
-
 <title>TurboRefundExpress | File Taxes Free</title>
 
+<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 
 <style>
 body { font-family: 'Inter', sans-serif; }
 
+/* TurboTax styling */
 .turbotax-red {
     color: #dc2626;
     text-decoration: line-through;
     font-weight: 900;
     position: relative;
     display: inline-block;
-    animation: zoomPulse 2.2s ease-in-out infinite;
+    line-height: 1;
 }
 
+/* centered X */
 .turbotax-red::after {
     content: "✕";
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 28px;
+    font-size: 34px;
     color: black;
     font-weight: 900;
     pointer-events: none;
 }
 
-@keyframes zoomPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-    100% { transform: scale(1); }
-}
-
-/* sticky CTA */
-#stickyCTA {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: none;
-    z-index: 50;
+/* safe image scaling */
+img {
+    max-width: 100%;
+    height: auto;
 }
 </style>
 </head>
 
 <body class="bg-slate-50 text-slate-900">
 
-<!-- FULL PAGE CLICK -->
-<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-class="fixed inset-0 z-10"></a>
-
-<div class="relative z-20">
-
 <!-- NAV -->
-<nav class="sticky top-0 bg-white/80 backdrop-blur border-b">
+<nav class="sticky top-0 bg-white/90 backdrop-blur border-b z-50">
   <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress">
-      <img src="turbo.jpg" class="h-20 md:h-24">
+    <!-- LOGO SAFE + CLICKABLE -->
+    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+       class="flex items-center">
+
+      <img src="turbo.jpg"
+           alt="Logo"
+           class="h-24 md:h-28 object-contain"
+           onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+
+      <span id="logo-fallback"
+            class="hidden text-xl font-black text-slate-800">
+        TurboRefundExpress
+      </span>
+
     </a>
 
+    <!-- CTA -->
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-       class="bg-emerald-600 text-white px-5 py-2 rounded-full font-bold">
+       class="bg-emerald-600 text-white px-5 py-2 rounded-full font-bold hover:bg-emerald-700">
        Start Free Filing
     </a>
 
@@ -78,120 +76,103 @@ class="fixed inset-0 z-10"></a>
 <!-- HERO -->
 <section class="max-w-4xl mx-auto px-6 pt-10 text-center">
 
-<span class="bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full text-sm font-bold">
-Simple Tax Filing Options
-</span>
+  <!-- TurboTax line -->
+  <h1 class="text-5xl md:text-6xl font-black mb-2">
+    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress">
+      <span class="turbotax-red">TurboTax</span>
+    </a>
+  </h1>
 
-<h1 class="text-5xl md:text-6xl font-black mt-4 mb-4 leading-tight">
+  <!-- headline -->
+  <h2 class="text-3xl md:text-4xl font-bold text-black mb-4">
+    fees hit taxpayers hard
+  </h2>
 
-<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress">
-  <span class="turbotax-red">TurboTax</span>
-</a>
+  <p class="text-lg text-slate-700 mb-6 max-w-2xl mx-auto">
+    Many taxpayers compare filing options to better understand potential costs based on their situation.
+  </p>
 
-fees hit taxpayers hard
-</h1>
-
-<p class="text-lg text-slate-700 mb-6 max-w-2xl mx-auto">
-Many taxpayers pay more depending on their filing situation. Compare options in minutes.
-</p>
-
-<!-- CTA -->
-<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-class="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-bold">
-Check Options →
-</a>
+  <!-- CTA -->
+  <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+     class="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-600 transition">
+     Check Options →
+  </a>
 
 </section>
 
-<!-- QUIZ -->
+<!-- SIMPLE QUIZ -->
 <section class="max-w-2xl mx-auto px-6 py-10">
 
-<div class="bg-white border rounded-2xl shadow p-6">
+  <div class="bg-white border rounded-2xl shadow p-6">
 
-<h3 class="text-xl font-black text-center mb-4">Quick Tax Check</h3>
+    <h3 class="text-xl font-black text-center mb-4">Quick Tax Check</h3>
 
-<label class="block border p-3 rounded mb-2">
-<input type="checkbox" class="quiz"> Multiple income sources
-</label>
+    <label class="block border p-3 rounded mb-2">
+      <input type="checkbox" class="quiz"> Multiple income sources
+    </label>
 
-<label class="block border p-3 rounded mb-2">
-<input type="checkbox" class="quiz"> 1099 income
-</label>
+    <label class="block border p-3 rounded mb-2">
+      <input type="checkbox" class="quiz"> 1099 income
+    </label>
 
-<label class="block border p-3 rounded mb-2">
-<input type="checkbox" class="quiz"> Investments or crypto
-</label>
+    <label class="block border p-3 rounded mb-2">
+      <input type="checkbox" class="quiz"> Investments or crypto
+    </label>
 
-<p id="quizResult" class="text-center font-bold mt-4"></p>
+    <p id="quizResult" class="text-center font-bold mt-4"></p>
 
-<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-class="block mt-5 bg-emerald-600 text-white text-center py-3 rounded-xl font-bold">
-See Results →
-</a>
+    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+       class="block mt-5 bg-emerald-600 text-white text-center py-3 rounded-xl font-bold">
+       See Options →
+    </a>
 
-</div>
+  </div>
 
 </section>
 
-<!-- BOTTOM STACK -->
+<!-- BOTTOM CTA STACK -->
 <section class="max-w-4xl mx-auto px-6 py-10">
 
-<div class="bg-white border rounded-2xl p-6 mb-6">
-<h3 class="text-xl font-black">Tax filing made simple</h3>
-<p class="text-slate-600 mb-4">Taxpayers can compare options in minutes.</p>
-<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-class="block bg-emerald-600 text-white text-center py-3 rounded-xl font-bold">
-Check Options →
-</a>
-</div>
+  <div class="bg-white border rounded-2xl p-6 mb-6">
+    <h3 class="text-xl font-black mb-2">Compare filing options</h3>
+    <p class="text-slate-600 mb-4">Taxpayers can review options in minutes.</p>
+    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+       class="block bg-emerald-600 text-white text-center py-3 rounded-xl font-bold">
+       Check Options →
+    </a>
+  </div>
 
-<div class="bg-white border rounded-2xl p-6 mb-6">
-<h3 class="text-xl font-black">Cost varies by situation</h3>
-<p class="text-slate-600">More complex returns may require additional forms.</p>
-<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-class="block mt-4 bg-slate-900 text-white text-center py-3 rounded-xl font-bold">
-Compare →
-</a>
-</div>
+  <div class="bg-white border rounded-2xl p-6 mb-6">
+    <h3 class="text-xl font-black mb-2">Filing complexity varies</h3>
+    <p class="text-slate-600">Different tax situations may require different forms or services.</p>
+    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+       class="block mt-4 bg-slate-900 text-white text-center py-3 rounded-xl font-bold">
+       Compare →
+    </a>
+  </div>
 
-<div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
-<h3 class="text-xl font-black text-red-700 mb-2">Ready to check?</h3>
-<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
-class="inline-block bg-red-600 text-white px-8 py-3 rounded-xl font-bold">
-Start Now →
-</a>
-</div>
+  <div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
+    <h3 class="text-xl font-black text-red-700 mb-2">Ready to check your options?</h3>
+    <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
+       class="inline-block bg-red-600 text-white px-8 py-3 rounded-xl font-bold">
+       Start Now →
+    </a>
+  </div>
 
 </section>
 
-<!-- STICKY CTA -->
-<div id="stickyCTA" class="bg-emerald-600 text-white text-center py-3 font-bold">
-<a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress">
-Check Filing Options →
-</a>
-</div>
-
+<!-- SCRIPT -->
 <script>
-// quiz
 document.querySelectorAll('.quiz').forEach(el => {
-    el.addEventListener('change', () => {
-        let count = document.querySelectorAll('.quiz:checked').length;
-        document.getElementById('quizResult').innerText =
-        count === 0 ? "" :
-        count === 1 ? "Simple filing likely" :
-        count === 2 ? "Moderate complexity" :
-        "Complex filing situation";
-    });
-});
+  el.addEventListener('change', () => {
+    let count = document.querySelectorAll('.quiz:checked').length;
 
-// sticky CTA
-window.addEventListener("scroll", () => {
-    const cta = document.getElementById("stickyCTA");
-    if (window.scrollY > 500) {
-        cta.style.display = "block";
-    } else {
-        cta.style.display = "none";
-    }
+    document.getElementById('quizResult').innerText =
+      count === 0 ? "" :
+      count === 1 ? "Simple filing likely" :
+      count === 2 ? "Moderate complexity" :
+      "More complex filing situation";
+  });
 });
 </script>
 
