@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TurboRefundExpress | File Taxes Free</title>
+<title>TurboRefundExpress | Compare Tax Filing Options</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
@@ -11,7 +11,6 @@
 <style>
 body { font-family: 'Inter', sans-serif; }
 
-/* TurboTax styling */
 .turbotax-red {
     color: #dc2626;
     text-decoration: line-through;
@@ -21,7 +20,6 @@ body { font-family: 'Inter', sans-serif; }
     line-height: 1;
 }
 
-/* centered X */
 .turbotax-red::after {
     content: "✕";
     position: absolute;
@@ -34,7 +32,6 @@ body { font-family: 'Inter', sans-serif; }
     pointer-events: none;
 }
 
-/* safe image scaling */
 img {
     max-width: 100%;
     height: auto;
@@ -45,29 +42,23 @@ img {
 <body class="bg-slate-50 text-slate-900">
 
 <!-- NAV -->
-<nav class="sticky top-0 bg-white/90 backdrop-blur border-b z-50">
+<nav class="sticky top-0 bg-white/95 backdrop-blur border-b z-50">
   <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- LOGO SAFE + CLICKABLE -->
+    <!-- LOGO FIXED -->
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
        class="flex items-center">
 
       <img src="turbo.jpg"
-           alt="Logo"
-           class="h-24 md:h-28 object-contain"
-           onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
-
-      <span id="logo-fallback"
-            class="hidden text-xl font-black text-slate-800">
-        TurboRefundExpress
-      </span>
+           alt="TurboRefundExpress Logo"
+           class="h-28 md:h-32 object-contain block">
 
     </a>
 
     <!-- CTA -->
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
        class="bg-emerald-600 text-white px-5 py-2 rounded-full font-bold hover:bg-emerald-700">
-       Start Free Filing
+      Start Free Filing
     </a>
 
   </div>
@@ -76,31 +67,33 @@ img {
 <!-- HERO -->
 <section class="max-w-4xl mx-auto px-6 pt-10 text-center">
 
-  <!-- TurboTax line -->
-  <h1 class="text-5xl md:text-6xl font-black mb-2">
+  <!-- BRAND LINE -->
+  <h1 class="text-5xl md:text-6xl font-black mb-3">
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress">
       <span class="turbotax-red">TurboTax</span>
     </a>
   </h1>
 
-  <!-- headline -->
+  <!-- MAIN HEADLINE -->
   <h2 class="text-3xl md:text-4xl font-bold text-black mb-4">
-    fees hit taxpayers hard
+    fees can vary depending on your tax situation
   </h2>
 
+  <!-- SUPPORT TEXT -->
   <p class="text-lg text-slate-700 mb-6 max-w-2xl mx-auto">
-    Many taxpayers compare filing options to better understand potential costs based on their situation.
+    Many taxpayers find that final filing costs depend on added features such as self-employment income, investments, crypto, or state filings.  
+    Comparing options helps identify more cost-effective filing paths.
   </p>
 
   <!-- CTA -->
   <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
      class="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-600 transition">
-     Check Options →
+     Compare Options →
   </a>
 
 </section>
 
-<!-- SIMPLE QUIZ -->
+<!-- QUIZ -->
 <section class="max-w-2xl mx-auto px-6 py-10">
 
   <div class="bg-white border rounded-2xl shadow p-6">
@@ -130,12 +123,12 @@ img {
 
 </section>
 
-<!-- BOTTOM CTA STACK -->
+<!-- BOTTOM STACK -->
 <section class="max-w-4xl mx-auto px-6 py-10">
 
   <div class="bg-white border rounded-2xl p-6 mb-6">
     <h3 class="text-xl font-black mb-2">Compare filing options</h3>
-    <p class="text-slate-600 mb-4">Taxpayers can review options in minutes.</p>
+    <p class="text-slate-600 mb-4">Taxpayers can review available options in minutes.</p>
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
        class="block bg-emerald-600 text-white text-center py-3 rounded-xl font-bold">
        Check Options →
@@ -144,7 +137,7 @@ img {
 
   <div class="bg-white border rounded-2xl p-6 mb-6">
     <h3 class="text-xl font-black mb-2">Filing complexity varies</h3>
-    <p class="text-slate-600">Different tax situations may require different forms or services.</p>
+    <p class="text-slate-600">Different tax situations may require different forms or features.</p>
     <a href="https://www.linkconnector.com/ta.php?lc=007949000010005142&lc_pid=Promo-5810&url=&atid=TurboRefundExpress"
        class="block mt-4 bg-slate-900 text-white text-center py-3 rounded-xl font-bold">
        Compare →
@@ -161,7 +154,7 @@ img {
 
 </section>
 
-<!-- SCRIPT -->
+<!-- QUIZ SCRIPT -->
 <script>
 document.querySelectorAll('.quiz').forEach(el => {
   el.addEventListener('change', () => {
