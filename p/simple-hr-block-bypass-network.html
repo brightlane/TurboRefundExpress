@@ -1,4 +1,5 @@
 <style>
+/* Same CSS as before - red TurboTax + 110px X intact */
 #taxPopup {
     position: fixed;
     inset: 0;
@@ -32,7 +33,6 @@
     padding: 35px 30px 30px;
 }
 
-/* HEADLINE WRAP */
 .headline-wrap {
     position: relative;
     display: flex;
@@ -41,7 +41,6 @@
     margin: 40px 0 25px;
 }
 
-/* TURBOTAX */
 .headline {
     font-size: 3.6rem;
     font-weight: 900;
@@ -51,26 +50,17 @@
     z-index: 2;
 }
 
-/* ❌ SMALLER X (TUNED DOWN) */
 .headline-wrap::before {
     content: "✕";
     position: absolute;
-
-    /* ↓ REDUCED AGAIN */
-    font-size: 175px;
-
+    font-size: 110px;
     font-weight: 900;
     color: rgba(255, 0, 0, 0.75);
-
     transform: rotate(-12deg);
-    animation: pulseX 1.2s infinite;
-
+    animation: pulseX 1.5s infinite;
     z-index: 3;
     pointer-events: none;
-
-    text-shadow:
-        0 0 10px rgba(255,0,0,0.75),
-        0 0 22px rgba(255,0,0,0.45);
+    text-shadow: 0 0 10px rgba(255,0,0,0.75), 0 0 22px rgba(255,0,0,0.45);
 }
 
 @keyframes pulseX {
@@ -78,14 +68,8 @@
     50% { opacity: 0.85; transform: rotate(-12deg) scale(1.01); }
 }
 
-/* TEXT */
-p {
-    color: #444;
-    font-size: 1rem;
-    margin: 10px 0;
-}
+p { color: #444; font-size: 1rem; margin: 10px 0; }
 
-/* WARNING BOX */
 .warning-box {
     background: #160000;
     color: #ff3b3b;
@@ -97,7 +81,6 @@ p {
     text-align: left;
 }
 
-/* BUTTONS */
 .popup-btn {
     display: block;
     width: 100%;
@@ -109,56 +92,34 @@ p {
     text-decoration: none;
 }
 
-.primary-btn {
-    background: #28a745;
-    color: white;
-}
-
-.primary-btn:hover {
-    background: #1e7e34;
-}
-
-.secondary-btn {
-    background: none;
-    color: #aaa;
-    text-decoration: underline;
-    font-size: 0.9rem;
-}
+.primary-btn { background: #28a745; color: white; }
+.primary-btn:hover { background: #1e7e34; }
+.secondary-btn { background: none; color: #aaa; text-decoration: underline; font-size: 0.9rem; }
 </style>
 
 <div id="taxPopup">
-
     <div class="popup-box">
-
         <div class="alert-bar">
-            ⚠️ HIGH FEES DETECTED — REVIEW BEFORE YOU FILE
+            ⚠️ TURBOTAX REFUND DENIED? DON'T GET STUCK
         </div>
-
         <div class="content">
-
             <div class="headline-wrap">
                 <div class="headline">TurboTax</div>
             </div>
-
-            <p>Most filers don’t realize they’re about to pay $80–$120 before finishing.</p>
-
+            <p>Users paid for Deluxe... then incompatible. Hours wasted, no refund.</p>
             <div class="warning-box">
-                • Surprise fees at checkout<br>
-                • Upsells at final step<br>
-                • Free filing options often hidden
+                • Locked out after payment<br>
+                • Simple returns rejected<br>
+                • "Scam" complaints everywhere
             </div>
-
-            <p><strong>Check this first — it could save you money in 2 minutes.</strong></p>
-
+            <p><strong>Backup works—save $50+ FREE option?</strong></p>
             <a href="https://www.linkconnector.com/ta.php?lc=007949061588005142&atid=UsaTaxRefunds"
                class="popup-btn primary-btn">
-               YES — SHOW ME THE FREE OPTION →
+               TRY WORKING BACKUP NOW →
             </a>
-
             <a href="#" class="popup-btn secondary-btn" onclick="closePopup()">
-                No thanks, I’ll continue and risk paying more
+                Risk TurboTax retry
             </a>
-
         </div>
     </div>
 </div>
