@@ -1,4 +1,4 @@
-name: TRUE SEO ENGINE - Daily 30 Articles
+name: LOCKED SEO ENGINE (ZERO DRIFT)
 
 on:
   schedule:
@@ -16,113 +16,125 @@ jobs:
       with:
         python-version: '3.12'
 
-    - name: Install dependencies & build SEO pages
+    - name: Generate LOCKED SEO SITE
       run: |
         pip install jinja2
 
         python << 'EOF'
-import os
-import random
 import datetime
 from jinja2 import Template
 
-today = datetime.date.today().strftime('%Y-%m-%d')
+# =========================
+# VERSION LOCK (prevents drift)
+# =========================
+BUILD_ID = datetime.datetime.utcnow().strftime("%Y%m%d%H%M%S")
+DATE = datetime.date.today().strftime("%Y-%m-%d")
 
 BASE_URL = "https://brightlane.github.io/TurboRefundExpress"
 
-affiliate = """
+AFFILIATE = "https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpress"
+
+BANNER = """
 <a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpress">
-<img src="https://7667.imgix.net/banners/54186.png" style="max-width:100%;">
+<img src="https://7667.imgix.net/banners/54186.png" style="max-height:60px;">
 </a>
 """
 
-topics = [
-    {
-        "slug": "w2-guide",
-        "title": "W-2 Tax Filing Guide 2026",
-        "words": [
-            "Understanding your W-2 form is the first step in filing taxes correctly.",
-            "Employers provide W-2s that summarize annual income and taxes withheld.",
-            "Filing early helps prevent IRS processing delays and refund issues.",
-            "Accurate reporting reduces audit risk and improves refund speed."
-        ]
-    },
-    {
-        "slug": "refund-status",
-        "title": "IRS Refund Status Explained 2026",
-        "words": [
-            "IRS refund tracking allows taxpayers to monitor return progress.",
-            "Most refunds are processed within 21 days if no errors exist.",
-            "Delays occur due to incorrect banking or identity verification issues.",
-            "Electronic filing is the fastest method for refund approval."
-        ]
-    },
-    {
-        "slug": "efile-1040",
-        "title": "How to E-File Form 1040 in 2026",
-        "words": [
-            "Form 1040 is the standard federal income tax return document.",
-            "E-filing reduces manual errors and speeds up IRS processing.",
-            "Taxpayers must gather all income and deduction documents first.",
-            "Submission confirmation ensures successful IRS receipt."
-        ]
-    }
-]
-
-template = Template("""
+# =========================
+# SINGLE SOURCE OF TRUTH TEMPLATE
+# =========================
+TEMPLATE = Template("""
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>{{t.title}} | TurboRefund Express</title>
-<meta name="description" content="{{t.title}} guide for 2026 tax filing.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{title}} | TurboRefund Express</title>
+
+<meta name="description" content="{{title}} guide for 2026 tax filing and refund tracking.">
+
 </head>
 
-<body>
+<body style="margin:0;font-family:Arial;background:#0b1220;color:white;">
 
-<header style="display:flex;justify-content:space-between;align-items:center;">
-  <div>{{affiliate}}</div>
+<!-- ================= LOCKED HEADER ================= -->
+<header style="
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  padding:12px 16px;
+  background:#111827;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+">
 
-  <div style="text-align:center;">
-    <a href="{{BASE_URL}}">
-      <img src="turbo.jpg" style="height:80px;">
+  <!-- LEFT -->
+  <div style="flex:1;min-width:100px;text-align:left;">
+    <a href="{{affiliate}}">
+      {{banner}}
     </a>
-    <h3>TURBO REFUND EXPRESS</h3>
   </div>
 
-  <div>{{affiliate}}</div>
+  <!-- CENTER (LOCKED LOGO) -->
+  <div style="flex:1;min-width:160px;text-align:center;">
+    <a href="{{affiliate}}" style="text-decoration:none;">
+      <img src="turbo.jpg"
+           style="height:80px;display:block;margin:0 auto;">
+      <div style="font-weight:900;color:#38bdf8;margin-top:4px;font-size:13px;">
+        TURBO REFUND EXPRESS
+      </div>
+    </a>
+  </div>
+
+  <!-- RIGHT -->
+  <div style="flex:1;min-width:100px;text-align:right;">
+    <a href="{{affiliate}}">
+      {{banner}}
+    </a>
+  </div>
+
 </header>
 
-<main style="max-width:850px;margin:40px auto;">
+<!-- ================= CONTENT ================= -->
+<main style="max-width:850px;margin:40px auto;padding:20px;">
 
-<h1>{{t.title}}</h1>
+<h1>{{title}}</h1>
 
 <p>
-This article explains {{t.title}} in a clear, structured format designed for easy understanding.
+This article explains {{title}} in a structured, easy-to-read format.
+It is part of Build ID: {{build}} ensuring version consistency.
 </p>
 
-<h2>Complete Guide</h2>
-
-{% for w in t.words %}
-<p>{{w}}</p>
-{% endfor %}
-
-<h2>Step-by-Step Process</h2>
+<h2>Step-by-Step Guide</h2>
 <ol>
-  <li>Gather required documents</li>
-  <li>Verify all income information</li>
-  <li>Submit electronically</li>
-  <li>Track IRS confirmation</li>
+  <li>Gather required tax documents</li>
+  <li>Review income and deductions</li>
+  <li>Submit e-file return securely</li>
+  <li>Track IRS refund status</li>
 </ol>
 
-<h2>Internal Resources</h2>
+<h2>Why This Matters</h2>
+<p>
+Accurate filing improves refund speed and reduces IRS processing delays.
+</p>
+
+<h2>Related Pages</h2>
 <ul>
-{% for link in links %}
-  <li><a href="{{link.url}}">{{link.title}}</a></li>
-{% endfor %}
+  <li><a href="{{base}}/w2-guide-{{date}}.html">W-2 Guide</a></li>
+  <li><a href="{{base}}/refund-status-{{date}}.html">Refund Status</a></li>
+  <li><a href="{{base}}/efile-1040-{{date}}.html">E-File 1040</a></li>
 </ul>
 
-<a href="https://www.linkconnector.com/ta.php?lc=007949054186005142&atid=TurboRefundExpress">
-START E-FILING
+<a href="{{affiliate}}" style="
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 18px;
+  background:#2563eb;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;">
+START E-FILING NOW
 </a>
 
 </main>
@@ -131,44 +143,51 @@ START E-FILING
 </html>
 """)
 
-# build links for internal linking
-pages = []
-for t in topics:
-    pages.append({
-        "url": f"{BASE_URL}/{t['slug']}-{today}.html",
-        "title": t["title"]
-    })
+# =========================
+# CONTENT MAP (30 pages can expand this)
+# =========================
+pages = [
+    ("w2-guide", "W-2 Tax Filing Guide 2026"),
+    ("refund-status", "IRS Refund Status Explained 2026"),
+    ("efile-1040", "How to E-File Form 1040 in 2026"),
+]
 
-# generate pages
-for t in topics:
-    links = random.sample(pages, len(pages))
+generated_urls = []
 
-    html = template.render(
-        t=t,
-        affiliate=affiliate,
-        BASE_URL=BASE_URL,
-        links=links
+for slug, title in pages:
+    filename = f"{slug}-{DATE}.html"
+
+    html = TEMPLATE.render(
+        title=title,
+        affiliate=AFFILIATE,
+        banner=BANNER,
+        base=BASE_URL,
+        date=DATE,
+        build=BUILD_ID
     )
 
-    filename = f"{t['slug']}-{today}.html"
     with open(filename, "w", encoding="utf-8") as f:
         f.write(html)
 
-# sitemap
-with open("sitemap.xml", "w") as f:
+    generated_urls.append(f"{BASE_URL}/{filename}")
+
+# =========================
+# LOCKED SITEMAP (always rebuilt)
+# =========================
+with open("sitemap.xml", "w", encoding="utf-8") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
 
-    for t in topics:
-        f.write(f"<url><loc>{BASE_URL}/{t['slug']}-{today}.html</loc></url>\n")
+    for url in generated_urls:
+        f.write(f"<url><loc>{url}</loc></url>\n")
 
     f.write("</urlset>")
 EOF
 
-    - name: Commit & push
+    - name: Commit Locked Build
       run: |
-        git config user.name "SEO Engine Bot"
-        git config user.email "bot@github.com"
+        git config user.name "LOCKED SEO ENGINE"
+        git config user.email "seo@bot.com"
         git add .
-        git commit -m "SEO Engine update" || exit 0
+        git commit -m "LOCKED BUILD ${{ github.run_id }}" || exit 0
         git push
